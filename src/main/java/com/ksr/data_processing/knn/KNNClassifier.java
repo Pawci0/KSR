@@ -1,23 +1,26 @@
 package com.ksr.data_processing.knn;
 
 import lombok.AllArgsConstructor;
+import org.apache.commons.math3.ml.distance.DistanceMeasure;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @AllArgsConstructor
 public class KNNClassifier {
     final int count;
     final List<ClassificationObject> dataSet;
-    final Metric metric;
+    final DistanceMeasure metric;
 
     public String classify(ClassificationObject object){
         Map<ClassificationObject, Double> distances = new HashMap<>();
 
         for (ClassificationObject data: dataSet) {
-            Double distance = metric.distance(object.getValues(), data.getValues());
+            Double distance = metric.compute(object.getValues(), data.getValues());
             distances.put(data, distance);
         }
 

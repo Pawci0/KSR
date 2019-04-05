@@ -1,11 +1,17 @@
 package com.ksr.data_processing.knn;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.util.Vector;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ClassificationObject {
-    private final String label;
-    private final Vector<Double> values;
+    private String label;
+    private double[] values;
+
+    public ClassificationObject(double[] values) {
+        this.values = values;
+    }
 }
