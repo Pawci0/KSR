@@ -1,7 +1,6 @@
 package com.ksr.data_preparation;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.regex.Pattern;
 
 public class SGMConverter{
 
-    public static List<Article> convert(File input) throws FileNotFoundException {
+    public static List<Article> convert(File input){
         List<Article> result = new ArrayList<>();
         Scanner scanner = null;
         try{
