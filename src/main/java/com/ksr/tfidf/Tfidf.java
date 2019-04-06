@@ -2,14 +2,17 @@ package com.ksr.tfidf;
 
 import com.ksr.data_preparation.Article;
 
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Tfidf {
 
     public static Map<String, Double> idf(List<Article> articleList){
         return idf(articleList, new WordComparator());
+    }
+
+    public static Map<String, Double> idf(List<Article> articleList, int results){
+        return getNTopValues(articleList, new WordComparator(), results);
     }
 
     public static Map<String, Double> idf(List<Article> articleList, WordComparator comparator){
@@ -30,6 +33,10 @@ public class Tfidf {
         return idfMap;
     }
 
+    public static Map<String, Double> idf(List<Article> articleList, WordComparator comparator, int results){
+        return getNTopValues(articleList, comparator, results);
+    }
+
     public static Map<String, Double> idf(List<Article> articleList, CaseComparator comparator){
         TreeMap<String, Double> idfMap = new TreeMap<>(comparator);
         int documentCount = 0;
@@ -48,5 +55,13 @@ public class Tfidf {
             idfMap.replace(wordCount.getKey(), Math.log(documentCount / wordCount.getValue()));
         }
         return idfMap;
+    }
+
+    private static Map<String, Double> getNTopValues(List<Article> articles, WordComparator comparator, int results) {
+        Map<String, Double> idfs = idf(articles, comparator);
+        SortedSet<Map.Entry<String, Double>> sortedIdfs = new TreeSet<>(Comparator.comparing(Map.Entry::getValue));
+        sortedIdfs.addAll(idfs.entrySet());
+        final Map<String, Double> result = sortedIdfs.stream().skip(sortedIdfs.size() - results).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        return result;
     }
 }

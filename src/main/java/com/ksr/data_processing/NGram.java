@@ -1,6 +1,11 @@
 package com.ksr.data_processing;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class NGram implements Similarity {
+    @Getter @Setter
+    private int n;
 
     public NGram(int n){
         this.n = n;
@@ -30,14 +35,4 @@ public class NGram implements Similarity {
     protected int countNGrams(String a, String b){
         return Integer.max(a.length(), b.length()) - n + 1;
     }
-
-    public int getN() {
-        return n;
-    }
-
-    public void setN(int n) {
-        this.n = n;
-    }
-
-    private int n;
 }
