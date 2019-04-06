@@ -18,7 +18,7 @@ public class Article {
     public Article(String title, String originalText, List<String> topics, List<String> places) {
         this.title = title;
         this.originalText = originalText;
-        textTokens = TextTokenizer.tokenize(originalText);
+        textTokens = TextTokenizer.tokenizeLowerCaseWithProperNouns(originalText);
         this.topics = topics;
         this.places = places;
     }
