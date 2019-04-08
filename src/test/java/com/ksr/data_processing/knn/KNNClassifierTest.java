@@ -1,13 +1,11 @@
 package com.ksr.data_processing.knn;
 
 import org.apache.commons.math3.ml.distance.EuclideanDistance;
-import org.assertj.core.util.Arrays;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class KNNClassifierTest {

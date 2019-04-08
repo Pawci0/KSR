@@ -1,38 +1,42 @@
 package com.ksr.data_processing;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
+@AllArgsConstructor
+@Getter
+@Setter
 public class NGram implements Similarity {
-    @Getter @Setter
-    private int n;
 
-    public NGram(int n){
-        this.n = n;
-    }
+    private int N;
 
     @Override
-    public double compare(String a, String b) {
-        return (double)countMatchingNGrams(a, b)/countNGrams(a, b);
+    public double compare(String one, String two) {
+        int matchingGrams = countMatchingGrams(one, two);
+        int numberOfGrams = countGrams(one, two);
+
+        return (double)matchingGrams/numberOfGrams;
     }
 
-    protected int countMatchingNGrams(String a, String b){
-        int maxI = a.length() - n + 1;
-        int maxJ = b.length() - n + 1;
-        int count = 0;
-        for(int i=0; i<maxI; i++){
-            String nGram = a.substring(i, i+n);
-            for (int j=0; j<maxJ; j++){
-                if(nGram.equals(b.substring(j, j+n))){
-                    count++;
-                    break;
-                }
+    public int countGrams(String one, String two) {
+        return Integer.max(one.length(), two.length()) - N + 1;
+    }
+
+    public int countMatchingGrams(String one, String two) {
+        int oneGramCount = one.length() - N + 1;
+
+        int matchCounter = 0;
+
+        for(int i=0; i<oneGramCount; i++){
+            String gram = one.substring(i, i + N);
+            if(two.contains(gram)){
+                matchCounter ++;
             }
         }
-        return count;
-    }
 
-    protected int countNGrams(String a, String b){
-        return Integer.max(a.length(), b.length()) - n + 1;
+        return matchCounter;
+
     }
 }
