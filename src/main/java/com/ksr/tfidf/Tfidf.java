@@ -1,17 +1,20 @@
 package com.ksr.tfidf;
 
 import com.ksr.data_preparation.Article;
+import jdk.jshell.spi.ExecutionControl;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Tfidf {
 
-    /*
-    public static Map<String, Double> idf(List<Article> articleList){
-        return idf(articleList, new WordComparator());
-    }
 
+    public static Map<String, Double> idf(List<Article> articleList){
+        //todo: fix idf
+        return null;
+        //return idf(articleList, new WordComparator());
+    }
+/*
     public static Map<String, Double> idf(List<Article> articleList, int results){
         return getNTopValues(articleList, new WordComparator(), results);
     }
