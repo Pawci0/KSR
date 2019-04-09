@@ -4,6 +4,5 @@ import com.ksr.data_preparation.Article;
 import java.util.List;
 
 public interface Extractor {
-    Double extract(Article article);
-    List<Double> extract(List<Article> articles);
+    List<Double> extract(Article article);
 }
