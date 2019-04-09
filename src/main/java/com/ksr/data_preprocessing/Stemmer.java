@@ -5,17 +5,19 @@ import org.tartarus.snowball.ext.PorterStemmer;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Stemmer {
+public class Stemmer implements Trimmer {
     static PorterStemmer stemmer = new PorterStemmer();
 
-    public static String stem(String input){
+    public String trim(String input){
         stemmer.setCurrent(input);
         stemmer.stem();
         return stemmer.getCurrent();
     }
 
-    public static List<String> stem(List<String> input){
-        return input.stream().map(Stemmer::stem).collect(Collectors.toList());
+    public List<String> trim(List<String> input){
+        return input.stream()
+                .map(this::trim)
+                .collect(Collectors.toList());
     }
 
 }

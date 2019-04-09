@@ -2,7 +2,6 @@ package com.ksr.data_preparation;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import java.util.List;
 
@@ -14,9 +13,11 @@ public class Article {
     private List<String> topics;
     private List<String> places;
     private List<String> textTokens;
+    private List<String> titleTokens;
 
     public Article(String title, String originalText, List<String> topics, List<String> places) {
         this.title = title;
+        titleTokens = TextTokenizer.tokenizeLowerCaseWithProperNouns(title);
         this.originalText = originalText;
         textTokens = TextTokenizer.tokenizeLowerCaseWithProperNouns(originalText);
         this.topics = topics;

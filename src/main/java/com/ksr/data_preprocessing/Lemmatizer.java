@@ -5,13 +5,15 @@ import edu.stanford.nlp.simple.Sentence;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Lemmatizer
+public class Lemmatizer implements Trimmer
 {
-    public static String lemma(String word){
+    public String trim(String word){
         return new Sentence(word).lemma(0);
     }
 
-    public static List<String> lemma(List<String> words){
-        return words.stream().map(Lemmatizer::lemma).collect(Collectors.toList());
+    public List<String> trim(List<String> words){
+        return words.stream()
+                .map(this::trim)
+                .collect(Collectors.toList());
     }
 }
