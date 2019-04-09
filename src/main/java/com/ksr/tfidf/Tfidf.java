@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class Tfidf {
 
+    /*
     public static Map<String, Double> idf(List<Article> articleList){
         return idf(articleList, new WordComparator());
     }
@@ -64,4 +65,5 @@ public class Tfidf {
         final Map<String, Double> result = sortedIdfs.stream().skip(sortedIdfs.size() - results).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         return result;
     }
+    */
 }

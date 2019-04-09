@@ -12,7 +12,7 @@ public class NGramsTest {
         String one = "rabin";
         String two = "karabin";
 
-        Comparer comparer = new NGram(3);
+        Similarity comparer = new NGram(3);
 
         Double outcome = comparer.compare(one, two);
 
@@ -24,7 +24,7 @@ public class NGramsTest {
         String one = "rabin";
         String two = "karabin";
 
-        Comparer comparer = new GeneralizedNGram(3, 5);
+        Similarity comparer = new GeneralizedNGram(3, 5);
 
         Double outcome = comparer.compare(one, two);
 
