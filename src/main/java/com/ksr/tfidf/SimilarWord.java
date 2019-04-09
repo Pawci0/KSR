@@ -2,12 +2,12 @@ package com.ksr.tfidf;
 
 import com.ksr.data_processing.Similarity;
 
-public class SimilarityComparator extends WordComparator {
+public class SimilarWord implements WordComparator {
 
     private Similarity similarity;
     private double similarityValue;
 
-    public SimilarityComparator(Similarity similarity, double similarityValue){
+    public SimilarWord(Similarity similarity, double similarityValue){
         this.similarity = similarity;
         this.similarityValue = similarityValue;
     }

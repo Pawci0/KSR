@@ -1,5 +1,6 @@
 package com.ksr.data_processing;
 
+@Deprecated
 public class EditDistance implements Distance {
     @Override
     public int compare(String a, String b) {
