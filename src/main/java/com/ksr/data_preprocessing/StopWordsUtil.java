@@ -11,7 +11,7 @@ public class StopWordsUtil {
                 .collect(Collectors.toList());
     }
 
-    static List english(){
+    public static List<String> english(){
         return Arrays.asList(
                 "a",
                 "about",
