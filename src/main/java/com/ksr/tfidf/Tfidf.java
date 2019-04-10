@@ -1,7 +1,6 @@
 package com.ksr.tfidf;
 
 import com.ksr.data_preparation.Article;
-import jdk.jshell.spi.ExecutionControl;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -10,13 +9,11 @@ public class Tfidf {
 
 
     public static Map<String, Double> idf(List<Article> articleList){
-        //todo: fix idf
-        return null;
-        //return idf(articleList, new WordComparator());
+        return idf(articleList, new ExactWord());
     }
-/*
+
     public static Map<String, Double> idf(List<Article> articleList, int results){
-        return getNTopValues(articleList, new WordComparator(), results);
+        return getNTopValues(articleList, new ExactWord(), results);
     }
 
     public static Map<String, Double> idf(List<Article> articleList, WordComparator comparator){
@@ -68,5 +65,4 @@ public class Tfidf {
         final Map<String, Double> result = sortedIdfs.stream().skip(sortedIdfs.size() - results).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         return result;
     }
-    */
 }
