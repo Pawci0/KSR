@@ -15,21 +15,21 @@ public class KNNStatisticsTest {
     @Before
     public void setUp() throws Exception {
         ArrayList<ImmutablePair<ClassificationObject, String>> list = new ArrayList<>();
-        list.add(new ImmutablePair<ClassificationObject, String>(new ClassificationObject("positive", null),
+        list.add(new ImmutablePair<>(new ClassificationObject("positive", null),
                 "positive"));
-        list.add(new ImmutablePair<ClassificationObject, String>(new ClassificationObject("positive", null),
+        list.add(new ImmutablePair<>(new ClassificationObject("positive", null),
                 "positive"));
-        list.add(new ImmutablePair<ClassificationObject, String>(new ClassificationObject("positive", null),
+        list.add(new ImmutablePair<>(new ClassificationObject("positive", null),
                 "positive"));
-        list.add(new ImmutablePair<ClassificationObject, String>(new ClassificationObject("positive", null),
+        list.add(new ImmutablePair<>(new ClassificationObject("positive", null),
                 "positive"));
-        list.add(new ImmutablePair<ClassificationObject, String>(new ClassificationObject("positive", null),
+        list.add(new ImmutablePair<>(new ClassificationObject("positive", null),
                 "negative"));
-        list.add(new ImmutablePair<ClassificationObject, String>(new ClassificationObject("negative", null),
+        list.add(new ImmutablePair<>(new ClassificationObject("negative", null),
                 "positive"));
-        list.add(new ImmutablePair<ClassificationObject, String>(new ClassificationObject("negative", null),
+        list.add(new ImmutablePair<>(new ClassificationObject("negative", null),
                 "negative"));
-        list.add(new ImmutablePair<ClassificationObject, String>(new ClassificationObject("positive", null),
+        list.add(new ImmutablePair<>(new ClassificationObject("positive", null),
                 "negative"));
         statistics = new KNNStatistics(list);
     }
