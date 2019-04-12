@@ -24,7 +24,7 @@ public class App
 {
     public static void main( String[] args ) throws FileNotFoundException {
         System.out.println("Read articles test:");
-        Dataset dataset = new Dataset("src/test/resources");
+        Dataset dataset = new Dataset("src/main/resources");
         Stemmer stemmer = new Stemmer();
         List<Article> articles = dataset.getArticles();
         Iterator<Article> articleIterator = articles.iterator();
@@ -38,7 +38,7 @@ public class App
             }
         }
 
-        List<List<Article>> sets = DatasetSplitter.split(dataset.getArticles(), 0.5);
+        List<List<Article>> sets = DatasetSplitter.split(dataset.getArticles(), 0.1);
         Extractor extractor = new MixedExtractor(new ArticleLengthExtractor(), new AvgWordLengthExtractor(),
                 new MostCommonBigLetterExtractor(), new UniqueWordCountExtractor(), new UpperCaseExtractor());
 
