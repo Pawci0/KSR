@@ -2,19 +2,19 @@ package com.ksr;
 
 import com.ksr.data_preparation.Article;
 import com.ksr.data_preparation.Dataset;
-import com.ksr.data_preparation.SGMConverter;
-import com.ksr.data_preparation.TextTokenizer;
-import com.ksr.data_preprocessing.Lemmatizer;
+import com.ksr.data_preparation.DatasetSplitter;
 import com.ksr.data_preprocessing.Stemmer;
-import com.ksr.data_preprocessing.StopWordsUtil;
-import com.ksr.feature_extraction.Extractor;
-import com.ksr.feature_extraction.MixedExtractor;
+import com.ksr.data_processing.knn.ClassificationObject;
+import com.ksr.data_processing.knn.KNNClassifier;
+import com.ksr.data_processing.knn.KNNStatistics;
+import com.ksr.feature_extraction.*;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.math3.ml.distance.EuclideanDistance;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
-
-import static com.ksr.data_preprocessing.StopWordsUtil.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Hello world!
@@ -26,11 +26,44 @@ public class App
         System.out.println("Read articles test:");
         Dataset dataset = new Dataset("src/test/resources");
         Stemmer stemmer = new Stemmer();
-        for (Article article :
-                dataset.getArticles()) {
-            article.filter();
-            article.trim(stemmer);
+        List<Article> articles = dataset.getArticles();
+        Iterator<Article> articleIterator = articles.iterator();
+        while (articleIterator.hasNext()) {
+            Article article = articleIterator.next(); // must be called before you can call i.remove()
+            if(article.getPlaces().size() != 1)
+                articleIterator.remove();
+            else{
+                article.filter();
+                article.trim(stemmer);
+            }
         }
-        Extractor extractor = new MixedExtractor();
+
+        List<List<Article>> sets = DatasetSplitter.split(dataset.getArticles(), 0.5);
+        Extractor extractor = new MixedExtractor(new ArticleLengthExtractor(), new AvgWordLengthExtractor(),
+                new MostCommonBigLetterExtractor(), new UniqueWordCountExtractor(), new UpperCaseExtractor());
+
+        List<List<ClassificationObject>> classificationObjects = new ArrayList<>();
+        for(List<Article> set : sets){
+            ArrayList<ClassificationObject> temp = new ArrayList<>();
+            for(Article article : set){
+                List<Double> featureList = extractor.extract(article);
+                double[] featureArray = new double[featureList.size()];
+                for(int i = 0; i < featureList.size(); i++){
+                    featureArray[i] = featureList.get(i);
+                }
+                temp.add(new ClassificationObject(article.getPlaces().get(0), featureArray));
+            }
+            classificationObjects.add(temp);
+        }
+
+        KNNClassifier knnClassifier = new KNNClassifier(5, classificationObjects.get(0), new EuclideanDistance());
+
+        ArrayList<ImmutablePair<ClassificationObject, String>> results = new ArrayList<>();
+        for(ClassificationObject classificationObject : classificationObjects.get(1)){
+            results.add(new ImmutablePair<>(classificationObject, knnClassifier.classify(classificationObject)));
+        }
+        KNNStatistics knnStatistics = new KNNStatistics(results);
+        System.out.println("Accuracy: " + knnStatistics.getAcuracy());
+
     }
 }
