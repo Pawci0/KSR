@@ -4,11 +4,9 @@ import com.ksr.data_preparation.Article;
 import com.ksr.tfidf.ExactWord;
 import com.ksr.tfidf.Tfidf;
 import com.ksr.tfidf.WordComparator;
-import org.apache.lucene.util.CollectionUtil;
 
 import java.util.*;
 import java.util.Map.Entry;
-import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import org.apache.commons.collections4.CollectionUtils;
@@ -22,14 +20,14 @@ public class ClassKeywordOccurrenceExtractor implements Extractor {
     public ClassKeywordOccurrenceExtractor(List<Article> trainingSet, int keywordCount){
         this.keywordCount = keywordCount;
         comparator = new ExactWord();
-        Map<String, List<Article>> articlesToPlace = groupByTopics(trainingSet);
+        Map<String, List<Article>> articlesToPlace = groupByPlaces(trainingSet);
         classKeywords = extractKeywords(articlesToPlace);
     }
 
     public ClassKeywordOccurrenceExtractor(List<Article> trainingSet, int keywordCount, WordComparator comparator){
         this.keywordCount = keywordCount;
         this.comparator =  comparator;
-        Map<String, List<Article>> articlesToPlace = groupByTopics(trainingSet);
+        Map<String, List<Article>> articlesToPlace = groupByPlaces(trainingSet);
         classKeywords = extractKeywords(articlesToPlace);
     }
 
@@ -44,15 +42,15 @@ public class ClassKeywordOccurrenceExtractor implements Extractor {
         return result;
     }
 
-    private Map<String, List<Article>> groupByTopics(List<Article> trainingSet) {
+    private Map<String, List<Article>> groupByPlaces(List<Article> trainingSet) {
         Map<String, List<Article>> articlesToPlace = new HashMap<>();
 
         trainingSet.forEach(article -> {
-            article.getTopics().forEach(topic -> {
-                if(!articlesToPlace.containsKey(topic)){
-                    articlesToPlace.put(topic, new ArrayList<>());
+            article.getPlaces().forEach(place -> {
+                if(!articlesToPlace.containsKey(place)){
+                    articlesToPlace.put(place, new ArrayList<>());
                 }
-                articlesToPlace.get(topic).add(article);
+                articlesToPlace.get(place).add(article);
             });
         });
 

@@ -11,7 +11,7 @@ public class MostCommonBigLetterExtractor implements Extractor {
     @Override
     public List<Double> extract(Article article) {
         List<Double> asciiValueList = article.getTextTokens().stream()
-                                    .filter(word -> Character.isUpperCase(word.charAt(0)))
+                                    .filter(word -> !word.isEmpty() && Character.isUpperCase(word.charAt(0)))
                                     .map(word -> word.charAt(0))
                                     .map(y->(double)y)
                                     .collect(Collectors.toList());

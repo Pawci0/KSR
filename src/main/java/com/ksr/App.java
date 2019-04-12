@@ -3,7 +3,9 @@ package com.ksr;
 import com.ksr.data_preparation.Article;
 import com.ksr.data_preparation.Dataset;
 import com.ksr.data_preparation.DatasetSplitter;
+import com.ksr.data_preprocessing.Lemmatizer;
 import com.ksr.data_preprocessing.Stemmer;
+import com.ksr.data_preprocessing.Trimmer;
 import com.ksr.data_processing.knn.ClassificationObject;
 import com.ksr.data_processing.knn.KNNClassifier;
 import com.ksr.data_processing.knn.KNNStatistics;
@@ -24,7 +26,7 @@ public class App
     public static void main( String[] args ) throws FileNotFoundException {
         System.out.println("Read articles test:");
         Dataset dataset = new Dataset("src/main/resources");
-        Stemmer stemmer = new Stemmer();
+        Trimmer stemmer = new Stemmer();
 
         List<Article> articles = Utils.validateAndPrepareArticles(dataset, stemmer);
         articles = Utils.normalizeData(articles);
@@ -46,7 +48,7 @@ public class App
             classificationObjects.add(temp);
         }
 
-        KNNClassifier knnClassifier = new KNNClassifier(3, classificationObjects.get(0), new EuclideanDistance());
+        KNNClassifier knnClassifier = new KNNClassifier(11, classificationObjects.get(0), new EuclideanDistance());
 
         ArrayList<ImmutablePair<ClassificationObject, String>> results = new ArrayList<>();
         for(ClassificationObject classificationObject : classificationObjects.get(1)){

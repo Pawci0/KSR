@@ -27,6 +27,7 @@ public class TextTokenizer {
                 .map(Sentence::toString)
                 .map(StringUtils::uncapitalize)
                 .flatMap(sentence -> tokenize(sentence).stream())
+                .filter(s->!s.isEmpty())
                 .collect(Collectors.toList());
     }
 }

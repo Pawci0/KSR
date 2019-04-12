@@ -3,6 +3,7 @@ package com.ksr;
 import com.ksr.data_preparation.Article;
 import com.ksr.data_preparation.Dataset;
 import com.ksr.data_preprocessing.Stemmer;
+import com.ksr.data_preprocessing.Trimmer;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,14 +36,14 @@ public class Utils {
         return normalizedArticles;
     }
 
-    static List<Article> validateAndPrepareArticles(Dataset dataset, Stemmer stemmer) {
+    static List<Article> validateAndPrepareArticles(Dataset dataset, Trimmer trimmer) {
         List<Article> articles = dataset.getArticles().stream()
                 .filter(Utils::validateArticle)
                 .collect(Collectors.toList());
 
         articles.forEach(a->{
             a.filter();
-            a.trim(stemmer);
+            a.trim(trimmer);
         });
         return articles;
     }

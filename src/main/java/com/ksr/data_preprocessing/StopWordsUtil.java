@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class StopWordsUtil {
     public static List<String> filter(List<String> words, List<String> stopWords){
         return words.stream()
-                .filter(stopWords::contains)
+                .filter(word -> !word.isEmpty() && !stopWords.contains(word))
                 .collect(Collectors.toList());
     }
 
@@ -173,6 +173,7 @@ public class StopWordsUtil {
                 "whom",
                 "why",
                 "why's",
+                "will",
                 "with",
                 "won't",
                 "would",
