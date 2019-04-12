@@ -14,12 +14,15 @@ public class SimilarWord implements WordComparator {
 
 
     @Override
-    public int compare(String o1, String o2) {
-        return test(o1, o2) ? 1 : 0;
+    public boolean test(String word1, String word2) {
+        return similarity.compare(word1, word1) > similarityValue;
     }
 
     @Override
-    public boolean test(String s, String s2) {
-        return similarity.compare(s, s2) >= similarityValue;
+    public int compare(String word1, String word2) {
+        if(test(word1, word2)){
+            return 0;
+        }
+        return word1.compareTo(word2);
     }
 }

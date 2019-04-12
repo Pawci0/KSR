@@ -12,6 +12,6 @@ public class CaseComparator implements BiPredicate<String, String>, Comparator<S
 
     @Override
     public int compare(String o1, String o2) {
-        return test(o1, o2) ? 1 : 0;
+        return test(o1, o2) ? 0 : 1;
     }
 }

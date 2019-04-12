@@ -12,11 +12,11 @@ public class DatasetSplitterTest {
     @Test
     public void split() {
         ArrayList<Article> list = new ArrayList<>();
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < 113; i++){
             list.add(new Article());
         }
         List<List<Article>> result = DatasetSplitter.split(list, 0.7);
-        assertThat(result.get(0).size()).isEqualTo(70);
-        assertThat(result.get(1).size()).isEqualTo(30);
+        assertThat(result.get(0).size()).isEqualTo(79);
+        assertThat(result.get(1).size()).isEqualTo(34);
     }
 }

@@ -8,7 +8,6 @@ public class ExactWord implements WordComparator {
     }
 
     @Override
-    public int compare(String o1, String o2) {
-        return test(o1, o2) ? 1 : 0;
-    }
+    public int compare(String word1, String word2) {
+        return word1.compareTo(word2);    }
 }

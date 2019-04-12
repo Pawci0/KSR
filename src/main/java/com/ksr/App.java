@@ -7,6 +7,8 @@ import com.ksr.data_preparation.TextTokenizer;
 import com.ksr.data_preprocessing.Lemmatizer;
 import com.ksr.data_preprocessing.Stemmer;
 import com.ksr.data_preprocessing.StopWordsUtil;
+import com.ksr.feature_extraction.Extractor;
+import com.ksr.feature_extraction.MixedExtractor;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,11 +28,9 @@ public class App
         Stemmer stemmer = new Stemmer();
         for (Article article :
                 dataset.getArticles()) {
-            filter(article.getTextTokens(), english());
-            filter(article.getTitleTokens(), english());
-            stemmer.trim(article.getTextTokens());
-            stemmer.trim(article.getTitleTokens());
+            article.filter();
+            article.trim(stemmer);
         }
-        // wyznacz wektor cech
+        Extractor extractor = new MixedExtractor();
     }
 }

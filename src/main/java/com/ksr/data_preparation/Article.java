@@ -1,5 +1,7 @@
 package com.ksr.data_preparation;
 
+import com.ksr.data_preprocessing.StopWordsUtil;
+import com.ksr.data_preprocessing.Trimmer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -31,5 +33,15 @@ public class Article {
                 "\n topics=" + topics +
                 "\n places=" + places +
                 "\n}s";
+    }
+
+    public void trim(Trimmer trimmer){
+        textTokens = trimmer.trim(textTokens);
+        titleTokens= trimmer.trim(titleTokens);
+    }
+
+    public void filter(){
+        textTokens = StopWordsUtil.filter(textTokens, StopWordsUtil.english());
+        titleTokens = StopWordsUtil.filter(titleTokens, StopWordsUtil.english());
     }
 }
