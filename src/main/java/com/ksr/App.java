@@ -15,6 +15,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Hello world!
@@ -29,19 +30,10 @@ public class App
         System.out.println("Read articles test:");
         Dataset dataset = new Dataset("src/main/resources");
         Stemmer stemmer = new Stemmer();
-        List<Article> articles = dataset.getArticles();
-        Iterator<Article> articleIterator = articles.iterator();
-        while (articleIterator.hasNext()) {
-            Article article = articleIterator.next(); // must be called before you can call i.remove()
-            if(article.getPlaces().size() != 1 || !properLabels.contains(article.getPlaces().get(0)))
-                articleIterator.remove();
-            else{
-                article.filter();
-                article.trim(stemmer);
-            }
-        }
 
-        List<List<Article>> sets = DatasetSplitter.split(dataset.getArticles(), 0.1);
+        List<Article> articles = getArticles(dataset, stemmer);
+
+        List<List<Article>> sets = DatasetSplitter.split(articles, 0.1);
         Extractor extractor = new MixedExtractor(new ArticleLengthExtractor(), new AvgWordLengthExtractor(),
                 new MostCommonBigLetterExtractor(), new UniqueWordCountExtractor(), new UpperCaseExtractor());
 
@@ -68,5 +60,21 @@ public class App
         KNNStatistics knnStatistics = new KNNStatistics(results);
         System.out.println("Accuracy: " + knnStatistics.getAcuracy());
 
+    }
+
+    private static List<Article> getArticles(Dataset dataset, Stemmer stemmer) {
+        List<Article> articles = dataset.getArticles().stream()
+                .filter(App::validateArticle)
+                .collect(Collectors.toList());
+
+        articles.forEach(a->{
+            a.filter();
+            a.trim(stemmer);
+        });
+        return articles;
+    }
+
+    private static boolean validateArticle(Article a) {
+        return a.getPlaces().size() == 1 && properLabels.contains(a.getPlaces().get(0));
     }
 }
