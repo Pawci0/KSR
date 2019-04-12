@@ -20,8 +20,11 @@ import java.util.List;
  * Hello world!
  *
  */
-public class App 
+public class App
 {
+    private static List<String> properLabels = List.of("west-germany", "usa", "france", "uk",
+            "canada", "japan");
+
     public static void main( String[] args ) throws FileNotFoundException {
         System.out.println("Read articles test:");
         Dataset dataset = new Dataset("src/test/resources");
@@ -30,7 +33,7 @@ public class App
         Iterator<Article> articleIterator = articles.iterator();
         while (articleIterator.hasNext()) {
             Article article = articleIterator.next(); // must be called before you can call i.remove()
-            if(article.getPlaces().size() != 1)
+            if(article.getPlaces().size() != 1 || !properLabels.contains(article.getPlaces().get(0)))
                 articleIterator.remove();
             else{
                 article.filter();
