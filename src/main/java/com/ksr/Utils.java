@@ -35,7 +35,7 @@ public class Utils {
         return normalizedArticles;
     }
 
-    static List<Article> getArticles(Dataset dataset, Stemmer stemmer) {
+    static List<Article> validateAndPrepareArticles(Dataset dataset, Stemmer stemmer) {
         List<Article> articles = dataset.getArticles().stream()
                 .filter(Utils::validateArticle)
                 .collect(Collectors.toList());

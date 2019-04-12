@@ -26,11 +26,11 @@ public class App
         Dataset dataset = new Dataset("src/main/resources");
         Stemmer stemmer = new Stemmer();
 
-        List<Article> articles = Utils.getArticles(dataset, stemmer);
+        List<Article> articles = Utils.validateAndPrepareArticles(dataset, stemmer);
         articles = Utils.normalizeData(articles);
 
-        List<List<Article>> sets = DatasetSplitter.split(articles, 0.6);
-        Extractor extractor = new ClassKeywordOccurrenceExtractor(sets.get(0), 10);
+        List<List<Article>> sets = DatasetSplitter.split(articles, 0.8);
+        Extractor extractor = ExtractorFactory.GeneralExtractors();
 
         List<List<ClassificationObject>> classificationObjects = new ArrayList<>();
         for(List<Article> set : sets){
