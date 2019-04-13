@@ -49,6 +49,15 @@ public class Utils {
     }
 
     private static boolean validateArticle(Article a) {
-        return a.getPlaces().size() == 1 && properLabels.contains(a.getPlaces().get(0));
+        boolean ret = true;
+        if(a.getPlaces().size() == 0){
+            return false;
+        }
+        for (String place: a.getPlaces()) {
+            if(!properLabels.contains(place)){
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -1,7 +1,11 @@
 package com.ksr.feature_extraction;
 
 import com.ksr.data_preparation.Article;
+import com.ksr.data_processing.GeneralizedNGram;
+import com.ksr.data_processing.NGram;
+import com.ksr.data_processing.StringKernel;
 import com.ksr.tfidf.ExactWord;
+import com.ksr.tfidf.SimilarWord;
 import com.ksr.tfidf.Tfidf;
 import com.ksr.tfidf.WordComparator;
 
@@ -19,7 +23,8 @@ public class ClassKeywordOccurrenceExtractor implements Extractor {
 
     public ClassKeywordOccurrenceExtractor(List<Article> trainingSet, int keywordCount){
         this.keywordCount = keywordCount;
-        comparator = new ExactWord();
+//        comparator = new SimilarWord(new GeneralizedNGram(2,4), 0.7);
+        comparator = new SimilarWord(new GeneralizedNGram(2,5), 0.7);
         Map<String, List<Article>> articlesToPlace = groupByPlaces(trainingSet);
         classKeywords = extractKeywords(articlesToPlace);
     }
@@ -33,10 +38,10 @@ public class ClassKeywordOccurrenceExtractor implements Extractor {
 
     @Override
     public List<Double> extract(Article article) {
-        List<String> articleKeywords = getNBestKeywords(List.of(article));
+//        List<String> articleKeywords = getNBestKeywords(List.of(article));
         List<Double> result = new ArrayList<>();
         classKeywords.values().forEach((labelKeywords) -> {
-            int sameWordCount = CollectionUtils.intersection(labelKeywords, articleKeywords).size();
+            int sameWordCount = CollectionUtils.intersection(labelKeywords, article.getTextTokens()).size();
             result.add((double)sameWordCount/keywordCount);
         });
         return result;

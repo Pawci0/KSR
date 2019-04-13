@@ -15,7 +15,7 @@ public class SimilarWord implements WordComparator {
 
     @Override
     public boolean test(String word1, String word2) {
-        return similarity.compare(word1, word1) > similarityValue;
+        return similarity.compare(word1, word2) > similarityValue;
     }
 
     @Override

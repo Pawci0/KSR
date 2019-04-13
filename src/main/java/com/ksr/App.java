@@ -11,6 +11,7 @@ import com.ksr.data_processing.knn.KNNClassifier;
 import com.ksr.data_processing.knn.KNNStatistics;
 import com.ksr.feature_extraction.*;
 import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.math3.ml.distance.ChebyshevDistance;
 import org.apache.commons.math3.ml.distance.EuclideanDistance;
 
 import java.io.FileNotFoundException;
@@ -32,7 +33,8 @@ public class App
         articles = Utils.normalizeData(articles);
 
         List<List<Article>> sets = DatasetSplitter.split(articles, 0.8);
-        Extractor extractor = ExtractorFactory.GeneralExtractors();
+        Extractor extractor = ExtractorFactory.KeywordExtractor(sets.get(0), 10);
+//        Extractor extractor = ExtractorFactory.GeneralExtractors();
 
         List<List<ClassificationObject>> classificationObjects = new ArrayList<>();
         for(List<Article> set : sets){
@@ -43,7 +45,8 @@ public class App
                 for(int i = 0; i < featureList.size(); i++){
                     featureArray[i] = featureList.get(i);
                 }
-                temp.add(new ClassificationObject(article.getPlaces().get(0), featureArray));
+                article.getPlaces().forEach(p->temp.add(new ClassificationObject(p, featureArray)));
+//                temp.add(new ClassificationObject(article.getPlaces().get(0), featureArray));
             }
             classificationObjects.add(temp);
         }
