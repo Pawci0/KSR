@@ -9,8 +9,12 @@ public class ExtractorFactory {
 
     public static Extractor AllExtractors(List<Article> trainingSet, int keywordCount){
         return new MixedExtractor(new ClassKeywordOccurrenceExtractor(trainingSet, keywordCount),
-                new ArticleLengthExtractor(), new AvgWordLengthExtractor(), new MostCommonBigLetterExtractor(),
-                new UniqueWordCountExtractor(), new UpperCaseExtractor(), new LabelOccurenceExtractor());
+                new ArticleLengthExtractor(),
+                new AvgWordLengthExtractor(),
+                new MostCommonBigLetterExtractor(),
+                new UniqueWordCountExtractor(),
+                new UpperCaseExtractor(),
+                new LabelOccurenceExtractor());
     }
 
     public static Extractor GeneralExtractors(){

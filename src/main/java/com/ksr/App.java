@@ -27,20 +27,20 @@ public class App
 {
 
     public static final double SPLIT = 0.8;
-    public static int KNEIGH = 3;
+    public static int KNEIGH = 7;
     static DistanceMeasure metric = new EuclideanDistance();
 
     public static void main(String[] args ) throws FileNotFoundException {
         Dataset dataset = new Dataset("src/main/resources");
         Trimmer stemmer = new Stemmer();
-        while (KNEIGH < 20) {
+        while (KNEIGH < 8) {
 
             List<Article> articles = Utils.validateAndPrepareArticles(dataset, stemmer);
             articles = Utils.normalizeData(articles);
 
             List<List<Article>> sets = DatasetSplitter.split(articles, SPLIT);
             Extractor extractor = ExtractorFactory.AllExtractors(sets.get(0), 10);
-//        Extractor extractor = ExtractorFactory.GeneralExtractors();
+//            Extractor extractor = new UpperCaseExtractor();
 
             List<List<ClassificationObject>> classificationObjects = new ArrayList<>();
             for(List<Article> set : sets){
@@ -64,7 +64,7 @@ public class App
                 results.add(new ImmutablePair<>(classificationObject, knnClassifier.classify(classificationObject)));
             }
             KNNStatistics knnStatistics = new KNNStatistics(results);
-            System.out.println(KNEIGH + "; " + String.format("%.2f", knnStatistics.getAcuracy()) + "; " + SPLIT);
+            System.out.println(String.format("%.2f", knnStatistics.getAcuracy()));
             KNEIGH +=2;
         }
 

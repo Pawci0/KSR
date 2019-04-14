@@ -1,0 +1,7 @@
+missing feature; accuracy; (metric=Euclidean, split=0.8, k=7)
+ArticleLengthExtractor; 0,35
+AvgWordLengthExtractor; 0,37
+MostCommonBigLetterExtractor; 0,33
+UniqueWordCountExtractor; 0,37
+UpperCaseExtractor; 0,33
+LabelOccurenceExtractor; 0,37
