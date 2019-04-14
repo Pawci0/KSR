@@ -22,7 +22,7 @@ public class Article {
         titleTokens = TextTokenizer.tokenizeLowerCaseWithProperNouns(title);
         this.originalText = originalText;
         textTokens = TextTokenizer.tokenizeLowerCaseWithProperNouns(originalText);
-        this.topics = topics;
+        this.topics = places;
         this.places = places;
     }
 
