@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Utils {
-    private static List<String> properLabels = List.of("west-germany", "usa", "france", "uk",
+    public static List<String> properLabels = List.of("west-germany", "usa", "france", "uk",
             "canada", "japan");
 
     static List<Article>  normalizeData(List<Article> articleList){
