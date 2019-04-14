@@ -31,13 +31,14 @@ public class App
     static DistanceMeasure metric = new EuclideanDistance();
 
     public static void main(String[] args ) throws FileNotFoundException {
-        Dataset dataset = new Dataset("src/main/resources");
+        Dataset dataset = new Dataset("src/main/resources/reuters_dataset");
         Trimmer stemmer = new Stemmer();
         while(SPLIT < 1){
             KNEIGH = 3;
             while (KNEIGH < 20) {
                 List<Article> articles = Utils.validateAndPrepareArticles(dataset, stemmer);
-                articles = Utils.normalizeData(articles);
+                if(dataset.getDirectoryPath().equals("src/main/resources/reuters_dataset"))
+                    articles = Utils.normalizeData(articles);
 
                 List<List<Article>> sets = DatasetSplitter.split(articles, SPLIT);
                 Extractor extractor = ExtractorFactory.AllExtractors(sets.get(0), 10);
