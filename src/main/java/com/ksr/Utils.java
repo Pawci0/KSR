@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class Utils {
     private static List<String> properLabels = List.of("west-germany", "usa", "france", "uk",
-            "canada", "japan");
+            "canada", "japan", "elvis", "eminem", "queen", "sinatra", "viper");
 
     static List<Article>  normalizeData(List<Article> articleList){
         HashMap<String, Integer> classCounter = new HashMap<>();
