@@ -25,13 +25,12 @@ public class App
 
     public static void main( String[] args ) throws FileNotFoundException {
         System.out.println("Read articles test:");
-//        Dataset dataset = new Dataset("src/main/resources");
-        Dataset dataset = new Dataset();
-        dataset.setCustomDatasetPath("src/main/resources/custom_dataset");
+        Dataset dataset = new Dataset("src/main/resources/reuters_dataset");
         Trimmer stemmer = new Stemmer();
 
         List<Article> articles = Utils.validateAndPrepareArticles(dataset, stemmer);
-//        articles = Utils.normalizeData(articles);
+        if(dataset.getDirectoryPath().equals("src/main/resources/reuters_dataset"))
+            articles = Utils.normalizeData(articles);
 
         List<List<Article>> sets = DatasetSplitter.split(articles, 0.6);
         Extractor extractor = ExtractorFactory.GeneralExtractors();

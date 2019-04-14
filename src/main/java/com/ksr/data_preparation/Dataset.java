@@ -27,10 +27,10 @@ public class Dataset {
         articles = new ArrayList<>();
         try{
             File directory = new File(directoryPath);
-            var files = directory.listFiles(file -> file.getName().endsWith(".sgm"));
+            var files = directory.listFiles();
             if(files != null){
                 articles = Arrays.stream(files)
-                                    .map(SGMConverter::convert)
+                                    .map(this::convert)
                                     .flatMap(Collection::stream)
                                     .collect(Collectors.toList());
             }
@@ -40,21 +40,11 @@ public class Dataset {
         }
     }
 
-    public void setCustomDatasetPath(String directoryPath){
-        this.directoryPath = directoryPath;
-        articles = new ArrayList<>();
-        try{
-            File directory = new File(directoryPath);
-            var files = directory.listFiles(file -> file.getName().endsWith(".txt"));
-            if(files != null){
-                articles = Arrays.stream(files)
-                        .map(TXTConverter::convert)
-                        .flatMap(Collection::stream)
-                        .collect(Collectors.toList());
-            }
-
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+    private List<Article> convert(File input){
+        if(input.getName().endsWith(".sgm"))
+            return SGMConverter.convert(input);
+        else if(input.getName().endsWith(".txt"))
+            return TXTConverter.convert(input);
+        return null;
     }
 }
