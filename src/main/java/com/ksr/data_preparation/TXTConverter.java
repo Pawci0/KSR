@@ -14,10 +14,8 @@ public class TXTConverter {
             scanner = new Scanner(input);
             String label = getLabel(scanner);
             while(true){
-                String song = scanner.findWithinHorizon("\r\n", 10000);
-                if(song == null || song.isEmpty()){
+                if(!scanner.hasNext())
                     break;
-                }
                 String text = getText(scanner);
                 result.add(new Article("", text, null, List.of(label)));
             }
