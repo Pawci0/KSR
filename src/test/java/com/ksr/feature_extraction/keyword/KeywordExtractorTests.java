@@ -54,6 +54,16 @@ public class KeywordExtractorTests {
     }
 
     @Test
+    public void AverageKeywordAppearanceTest(){
+        Extractor extractor = new AverageKeywordAppearance();
+        List<Double> resultTrue = extractor.extract(containing, keywords);
+        List<Double> resultFalse = extractor.extract(notContaining, keywords);
+
+        assertThat(resultTrue).isEqualTo(List.of(3.0/3));
+        assertThat(resultFalse).isEqualTo(List.of(0.0));
+    }
+
+    @Test
     public void MostCommonKeywordOccurencesTest() {
         Extractor extractor = new MostCommonKeywordOccurences();
         List<Double> resultTrue = extractor.extract(containing, keywords);
