@@ -19,7 +19,7 @@ public class KeywordExtractorTests {
     @Before
     public void setup(){
         keywords = List.of("a", "b", "c");
-        containing = new Article("title", "a b d", null, null);
+        containing = new Article("title", "a a b d", null, null);
         notContaining = new Article("title", "x d e", null, null);
     }
 
@@ -40,6 +40,16 @@ public class KeywordExtractorTests {
         List<Double> resultFalse = extractor.extract(notContaining, keywords);
 
         assertThat(resultTrue).isEqualTo(List.of(2.0));
+        assertThat(resultFalse).isEqualTo(List.of(0.0));
+    }
+
+    @Test
+    public void HowManyTimesKeywordsAppearedTest() {
+        Extractor extractor = new HowManyTimesKeywordsAppeared();
+        List<Double> resultTrue = extractor.extract(containing, keywords);
+        List<Double> resultFalse = extractor.extract(notContaining, keywords);
+
+        assertThat(resultTrue).isEqualTo(List.of(3.0));
         assertThat(resultFalse).isEqualTo(List.of(0.0));
     }
 }
