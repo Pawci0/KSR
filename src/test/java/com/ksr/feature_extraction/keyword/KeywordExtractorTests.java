@@ -19,7 +19,7 @@ public class KeywordExtractorTests {
     @Before
     public void setup(){
         keywords = List.of("a", "b", "c");
-        containing = new Article("title", "a a b d", null, null);
+        containing = new Article("title", "a a d b e f g", null, null);
         notContaining = new Article("title", "x d e", null, null);
     }
 
@@ -70,6 +70,16 @@ public class KeywordExtractorTests {
         List<Double> resultFalse = extractor.extract(notContaining, keywords);
 
         assertThat(resultTrue).isEqualTo(List.of(2.0));
+        assertThat(resultFalse).isEqualTo(List.of(0.0));
+    }
+
+    @Test
+    public void WeightedKeywordAppearanTest(){
+        Extractor extractor = new WeightedKeywordAppearance();
+        List<Double> resultTrue = extractor.extract(containing, keywords);
+        List<Double> resultFalse = extractor.extract(notContaining, keywords);
+
+        assertThat(resultTrue).isEqualTo(List.of(2.6));
         assertThat(resultFalse).isEqualTo(List.of(0.0));
     }
 }
