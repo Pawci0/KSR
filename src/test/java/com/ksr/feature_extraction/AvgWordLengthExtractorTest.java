@@ -12,7 +12,7 @@ public class AvgWordLengthExtractorTest {
     public void extract() {
         Article a = new Article("title", "this is the text of the article", null, null);
         Extractor extractor = new AvgWordLengthExtractor();
-        Double outcome = extractor.extract(a, ).get(0);
+        Double outcome = extractor.extract(a, null).get(0);
         assertThat(outcome).isEqualTo(25.0/7);
     }
 }

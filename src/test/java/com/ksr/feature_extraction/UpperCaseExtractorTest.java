@@ -11,6 +11,6 @@ public class UpperCaseExtractorTest {
     @Test
     public void extract() {
         Article article = new Article("", "siema siema Siema Pozdrowienia z Podziemia", null, null);
-        assertThat( new UpperCaseExtractor().extract(article, ).get(0) ).isEqualTo(3.0);
+        assertThat( new UpperCaseExtractor().extract(article, null).get(0) ).isEqualTo(3.0);
     }
 }

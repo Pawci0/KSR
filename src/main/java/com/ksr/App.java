@@ -45,7 +45,8 @@ public class App
                 for(List<Article> set : sets){
                     ArrayList<ClassificationObject> temp = new ArrayList<>();
                     for(Article article : set){
-                        List<Double> featureList = extractor.extract(article, );
+                        //todo change null
+                        List<Double> featureList = extractor.extract(article, null);
                         double[] featureArray = new double[featureList.size()];
                         for(int i = 0; i < featureList.size(); i++){
                             featureArray[i] = featureList.get(i);

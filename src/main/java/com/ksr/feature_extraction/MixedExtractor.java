@@ -23,7 +23,7 @@ public class MixedExtractor implements Extractor {
     public List<Double> extract(Article article, List<String> keywords) {
         ArrayList<Double> result = new ArrayList<>();
         for (Extractor extractor : extractors) {
-            result.addAll(extractor.extract(article, ));
+            result.addAll(extractor.extract(article, keywords));
         }
         return result;
     }

@@ -13,7 +13,7 @@ public class ArticleLengthExtractorTest {
     public void extract() {
         Article a = new Article("title", "this is the text of the article", null, null);
         Extractor extractor = new ArticleLengthExtractor();
-        var outcome = extractor.extract(a, ).get(0);
+        var outcome = extractor.extract(a, null).get(0);
         assertThat(outcome).isEqualTo(7);
     }
 }

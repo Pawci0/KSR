@@ -2,6 +2,7 @@ package com.ksr.feature_extraction;
 
 import com.ksr.data_preparation.Article;
 import com.ksr.feature_extraction.basic.*;
+import com.ksr.feature_extraction.keyword.ClassKeywordOccurrenceExtractor;
 
 import java.util.List;
 

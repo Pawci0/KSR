@@ -1,4 +1,16 @@
 package com.ksr.feature_extraction.keyword;
 
-public class HowManyKeywordsAppeared {
+import com.ksr.data_preparation.Article;
+import com.ksr.feature_extraction.Extractor;
+
+import java.util.List;
+
+public class HowManyKeywordsAppeared implements Extractor {
+    @Override
+    public List<Double> extract(Article article, List<String> keywords) {
+        double counter = article.getTextTokens().stream()
+                .filter(keywords::contains)
+                .count();
+        return List.of(counter);
+    }
 }

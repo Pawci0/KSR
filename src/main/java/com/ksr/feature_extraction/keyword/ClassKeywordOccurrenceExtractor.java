@@ -1,7 +1,8 @@
-package com.ksr.feature_extraction;
+package com.ksr.feature_extraction.keyword;
 
 import com.ksr.data_preparation.Article;
 import com.ksr.data_processing.GeneralizedNGram;
+import com.ksr.feature_extraction.Extractor;
 import com.ksr.tfidf.SimilarWord;
 import com.ksr.tfidf.Tfidf;
 import com.ksr.tfidf.WordComparator;
