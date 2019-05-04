@@ -2,9 +2,6 @@ package com.ksr.feature_extraction;
 
 import com.ksr.data_preparation.Article;
 import com.ksr.data_processing.GeneralizedNGram;
-import com.ksr.data_processing.NGram;
-import com.ksr.data_processing.StringKernel;
-import com.ksr.tfidf.ExactWord;
 import com.ksr.tfidf.SimilarWord;
 import com.ksr.tfidf.Tfidf;
 import com.ksr.tfidf.WordComparator;
@@ -37,7 +34,7 @@ public class ClassKeywordOccurrenceExtractor implements Extractor {
     }
 
     @Override
-    public List<Double> extract(Article article) {
+    public List<Double> extract(Article article, List<String> keywords) {
 //        List<String> articleKeywords = getNBestKeywords(List.of(article));
         List<Double> result = new ArrayList<>();
         classKeywords.values().forEach((labelKeywords) -> {

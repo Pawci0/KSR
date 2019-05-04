@@ -1,10 +1,10 @@
 package com.ksr.feature_extraction;
 
 import com.ksr.data_preparation.Article;
+import com.ksr.feature_extraction.basic.MostCommonBigLetterExtractor;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
 
 public class MostCommonBigLetterExtractorTest {
 
@@ -15,9 +15,9 @@ public class MostCommonBigLetterExtractorTest {
         Article noProperNouns = new Article("title", "this is the text of the article", null, null);
         Extractor extractor = new MostCommonBigLetterExtractor();
 
-        var outcomeMany = extractor.extract(manyProperNouns).get(0);
-        var outcomeOne = extractor.extract(oneProperNouns).get(0);
-        var outcomeNo = extractor.extract(noProperNouns).get(0);
+        var outcomeMany = extractor.extract(manyProperNouns, ).get(0);
+        var outcomeOne = extractor.extract(oneProperNouns, ).get(0);
+        var outcomeNo = extractor.extract(noProperNouns, ).get(0);
 
         assertThat(outcomeMany).isEqualTo((int)'T');
         assertThat(outcomeOne).isEqualTo((int)'T');

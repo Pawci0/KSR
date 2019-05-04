@@ -3,7 +3,6 @@ package com.ksr;
 import com.ksr.data_preparation.Article;
 import com.ksr.data_preparation.Dataset;
 import com.ksr.data_preparation.DatasetSplitter;
-import com.ksr.data_preprocessing.Lemmatizer;
 import com.ksr.data_preprocessing.Stemmer;
 import com.ksr.data_preprocessing.Trimmer;
 import com.ksr.data_processing.knn.ClassificationObject;
@@ -13,8 +12,6 @@ import com.ksr.feature_extraction.*;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.math3.ml.distance.ChebyshevDistance;
 import org.apache.commons.math3.ml.distance.DistanceMeasure;
-import org.apache.commons.math3.ml.distance.EuclideanDistance;
-import org.apache.commons.math3.ml.distance.ManhattanDistance;
 
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -48,7 +45,7 @@ public class App
                 for(List<Article> set : sets){
                     ArrayList<ClassificationObject> temp = new ArrayList<>();
                     for(Article article : set){
-                        List<Double> featureList = extractor.extract(article);
+                        List<Double> featureList = extractor.extract(article, );
                         double[] featureArray = new double[featureList.size()];
                         for(int i = 0; i < featureList.size(); i++){
                             featureArray[i] = featureList.get(i);

@@ -1,13 +1,10 @@
 package com.ksr.feature_extraction;
 
 import com.ksr.data_preparation.Article;
-import com.ksr.data_preprocessing.StopWordsUtil;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class ClassKeywordOccurrenceExtractorTest {
 
@@ -24,6 +21,6 @@ public class ClassKeywordOccurrenceExtractorTest {
     public void extract() {
         Article canada = new Article("title", "adore canada, but also love USA. If had to choose it would be USA", null, null);
 
-        extractor.extract(canada);
+        extractor.extract(canada, );
     }
 }

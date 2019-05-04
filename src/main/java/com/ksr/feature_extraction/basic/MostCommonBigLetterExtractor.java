@@ -1,15 +1,16 @@
-package com.ksr.feature_extraction;
+package com.ksr.feature_extraction.basic;
 
 import com.ksr.data_preparation.Article;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.ksr.feature_extraction.Extractor;
 import org.jooq.lambda.*;
 
 public class MostCommonBigLetterExtractor implements Extractor {
     @Override
-    public List<Double> extract(Article article) {
+    public List<Double> extract(Article article, List<String> keywords) {
         List<Double> asciiValueList = article.getTextTokens().stream()
                                     .filter(word -> !word.isEmpty() && Character.isUpperCase(word.charAt(0)))
                                     .map(word -> word.charAt(0))

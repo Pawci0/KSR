@@ -1,7 +1,7 @@
-package com.ksr;
+package com.ksr.feature_extraction;
 
 import com.ksr.data_preparation.Article;
-import com.ksr.feature_extraction.*;
+import com.ksr.feature_extraction.basic.*;
 
 import java.util.List;
 
