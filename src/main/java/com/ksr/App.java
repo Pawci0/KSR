@@ -32,7 +32,7 @@ public class App
     static DistanceMeasure metric = new EuclideanDistance();
 
     public static void main(String[] args ) throws FileNotFoundException {
-        Dataset dataset = new Dataset("src/main/resources/reuters_dataset");
+        Dataset dataset = new Dataset("src/main/resources/custom_dataset");
         Trimmer stemmer = new Stemmer();
         while(SPLIT < 1){
             KNEIGH = 3;
@@ -46,8 +46,7 @@ public class App
 //            Extractor extractor = ExtractorFactory.GeneralExtractors();
         Extractor extractor = new MixedExtractor(new AnyKeywordAppeared(), new AverageKeywordAppearance(),
                 new HowManyKeywordsAppeared(), new HowManyTimesKeywordsAppeared(), new MostCommonKeywordOccurences(),
-                new StartingKeywordsExtractor(), new WeightedKeywordAppearance(),
-                new ClassKeywordOccurrenceExtractor(sets.get(0), 10));
+                new StartingKeywordsExtractor(), new WeightedKeywordAppearance());
         List<String> keywords = new ArrayList<>(Utils.sortByValue(Tfidf.idf(sets.get(0))).keySet());
         keywords = keywords.subList(0, 10);
                 List<List<ClassificationObject>> classificationObjects = new ArrayList<>();
