@@ -15,6 +15,7 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.math3.ml.distance.ChebyshevDistance;
 import org.apache.commons.math3.ml.distance.DistanceMeasure;
 import org.apache.commons.math3.ml.distance.EuclideanDistance;
+import org.apache.commons.math3.ml.distance.ManhattanDistance;
 
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -26,16 +27,16 @@ import java.util.*;
 public class App
 {
 
-    public static double SPLIT = 0.6;
-    public static int KNEIGH = 13;
+    public static double SPLIT = 0.2;
+    public static int KNEIGH = 3;
     static DistanceMeasure metric = new EuclideanDistance();
 
     public static void main(String[] args ) throws FileNotFoundException {
         Dataset dataset = new Dataset("src/main/resources/reuters_dataset");
         Trimmer stemmer = new Stemmer();
-//        while(SPLIT < 1){
-//            KNEIGH = 3;
-//            while (KNEIGH < 20) {
+        while(SPLIT < 1){
+            KNEIGH = 3;
+            while (KNEIGH < 20) {
                 List<Article> articles = Utils.validateAndPrepareArticles(dataset, stemmer);
                 if(dataset.getDirectoryPath().equals("src/main/resources/reuters_dataset"))
                     articles = Utils.normalizeData(articles);
@@ -43,7 +44,10 @@ public class App
                 List<List<Article>> sets = DatasetSplitter.split(articles, SPLIT);
 //                Extractor extractor = ExtractorFactory.KeywordExtractor(sets.get(0), 10);
 //            Extractor extractor = ExtractorFactory.GeneralExtractors();
-        Extractor extractor = new ClassKeywordOccurrenceExtractor(sets.get(1), 5);
+        Extractor extractor = new MixedExtractor(new AnyKeywordAppeared(), new AverageKeywordAppearance(),
+                new HowManyKeywordsAppeared(), new HowManyTimesKeywordsAppeared(), new MostCommonKeywordOccurences(),
+                new StartingKeywordsExtractor(), new WeightedKeywordAppearance(),
+                new ClassKeywordOccurrenceExtractor(sets.get(0), 10));
         List<String> keywords = new ArrayList<>(Utils.sortByValue(Tfidf.idf(sets.get(0))).keySet());
         keywords = keywords.subList(0, 10);
                 List<List<ClassificationObject>> classificationObjects = new ArrayList<>();
@@ -69,11 +73,11 @@ public class App
                     results.add(new ImmutablePair<>(classificationObject, knnClassifier.classify(classificationObject)));
                 }
                 KNNStatistics knnStatistics = new KNNStatistics(results);
-                System.out.println(KNEIGH + "; " + String.format("%.2f", knnStatistics.getAcuracy()) + "; " + metric.getClass().getSimpleName());
-//                KNEIGH +=2;
-//            }
-//            SPLIT += 0.2;
-//        }
+                System.out.println(KNEIGH + "; " + String.format("%.2f", knnStatistics.getAcuracy()) + "; " + SPLIT);
+                KNEIGH +=2;
+            }
+            SPLIT += 0.2;
+        }
     }
 
 }
