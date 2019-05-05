@@ -2,13 +2,9 @@ package com.ksr;
 
 import com.ksr.data_preparation.Article;
 import com.ksr.data_preparation.Dataset;
-import com.ksr.data_preprocessing.Stemmer;
 import com.ksr.data_preprocessing.Trimmer;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Utils {
@@ -59,5 +55,17 @@ public class Utils {
             }
         }
         return true;
+    }
+
+    public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map) {
+        List<Map.Entry<K, V>> list = new ArrayList<>(map.entrySet());
+        list.sort(Map.Entry.comparingByValue());
+
+        Map<K, V> result = new LinkedHashMap<>();
+        for (Map.Entry<K, V> entry : list) {
+            result.put(entry.getKey(), entry.getValue());
+        }
+
+        return result;
     }
 }

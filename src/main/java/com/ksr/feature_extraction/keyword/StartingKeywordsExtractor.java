@@ -11,6 +11,8 @@ public class StartingKeywordsExtractor implements Extractor {
         double total = article.getTextTokens().stream()
                 .filter(keywords::contains)
                 .count();
+        if(article.getTextTokens().size() < 20)
+            return List.of(0.0);
         double atStart = article.getTextTokens().subList(0, 20).stream()
                 .filter(keywords::contains)
                 .count();

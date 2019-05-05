@@ -9,9 +9,12 @@ import com.ksr.data_processing.knn.ClassificationObject;
 import com.ksr.data_processing.knn.KNNClassifier;
 import com.ksr.data_processing.knn.KNNStatistics;
 import com.ksr.feature_extraction.*;
+import com.ksr.feature_extraction.keyword.*;
+import com.ksr.tfidf.Tfidf;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.math3.ml.distance.ChebyshevDistance;
 import org.apache.commons.math3.ml.distance.DistanceMeasure;
+import org.apache.commons.math3.ml.distance.EuclideanDistance;
 
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -23,30 +26,32 @@ import java.util.*;
 public class App
 {
 
-    public static double SPLIT = 0.8;
-    public static int KNEIGH = 3;
-    static DistanceMeasure metric = new ChebyshevDistance();
+    public static double SPLIT = 0.6;
+    public static int KNEIGH = 13;
+    static DistanceMeasure metric = new EuclideanDistance();
 
     public static void main(String[] args ) throws FileNotFoundException {
-        Dataset dataset = new Dataset("src/main/resources/custom_dataset");
+        Dataset dataset = new Dataset("src/main/resources/reuters_dataset");
         Trimmer stemmer = new Stemmer();
-        while(SPLIT < 1){
+//        while(SPLIT < 1){
 //            KNEIGH = 3;
-            while (KNEIGH < 20) {
+//            while (KNEIGH < 20) {
                 List<Article> articles = Utils.validateAndPrepareArticles(dataset, stemmer);
                 if(dataset.getDirectoryPath().equals("src/main/resources/reuters_dataset"))
                     articles = Utils.normalizeData(articles);
 
                 List<List<Article>> sets = DatasetSplitter.split(articles, SPLIT);
-                Extractor extractor = ExtractorFactory.KeywordExtractor(sets.get(0), 10);
+//                Extractor extractor = ExtractorFactory.KeywordExtractor(sets.get(0), 10);
 //            Extractor extractor = ExtractorFactory.GeneralExtractors();
-
+        Extractor extractor = new ClassKeywordOccurrenceExtractor(sets.get(1), 5);
+        List<String> keywords = new ArrayList<>(Utils.sortByValue(Tfidf.idf(sets.get(0))).keySet());
+        keywords = keywords.subList(0, 10);
                 List<List<ClassificationObject>> classificationObjects = new ArrayList<>();
                 for(List<Article> set : sets){
                     ArrayList<ClassificationObject> temp = new ArrayList<>();
                     for(Article article : set){
                         //todo change null
-                        List<Double> featureList = extractor.extract(article, null);
+                        List<Double> featureList = extractor.extract(article, keywords);
                         double[] featureArray = new double[featureList.size()];
                         for(int i = 0; i < featureList.size(); i++){
                             featureArray[i] = featureList.get(i);
@@ -65,10 +70,10 @@ public class App
                 }
                 KNNStatistics knnStatistics = new KNNStatistics(results);
                 System.out.println(KNEIGH + "; " + String.format("%.2f", knnStatistics.getAcuracy()) + "; " + metric.getClass().getSimpleName());
-                KNEIGH +=2;
-            }
-            SPLIT += 0.2;
-        }
+//                KNEIGH +=2;
+//            }
+//            SPLIT += 0.2;
+//        }
     }
 
 }
