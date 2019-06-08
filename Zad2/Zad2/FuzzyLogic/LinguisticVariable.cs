@@ -15,5 +15,6 @@ namespace Zad2.FuzzyLogic
         public List<double> MembershipFunctionParameters { get; set; }
         public string MemberToExtract { get; set; }
         public Func<Entry, double> Extractor { get; set; }
+        public bool Absolute { get; set; }
     }
 }

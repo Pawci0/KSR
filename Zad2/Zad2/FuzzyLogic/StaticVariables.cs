@@ -14,7 +14,7 @@ namespace Zad2.FuzzyLogic
         {
             Name = "Young",
             MemberToExtract = "Age",
-            Extractor = e => new TrapezoidFunction(new List<double> { 8, 8, 14, 18 }).GetMembership(e.Age)
+            Extractor = e => new TrapezoidFunction(new List<double> { 8, 8, 17, 20 }).GetMembership(e.Age)
         };
         public static LinguisticVariable ageYoungAdult = new LinguisticVariable
         {
@@ -322,15 +322,38 @@ namespace Zad2.FuzzyLogic
         #endregion
 
         #region Quantizers
+        //relative
+        public static LinguisticVariable few = new LinguisticVariable
+        {
+            Name = "Few",
+            MembershipFunction = new TriangularFunction(new List<double> { 0, 0.15, 0.3 }),
+            Absolute = false
+        };
+        public static LinguisticVariable aroundHalf = new LinguisticVariable
+        {
+            Name = "Around half",
+            MembershipFunction = new TriangularFunction(new List<double> { 0.4, 0.5, 0.6 }),
+            Absolute = false
+        };
+        public static LinguisticVariable almostAll = new LinguisticVariable
+        {
+            Name = "Almost all",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 0.8, 0.9, 1, 1 }),
+            Absolute = false
+        };
+
+        //absolute
         public static LinguisticVariable around3000 = new LinguisticVariable
         {
             Name = "Around 3000",
             MembershipFunction = new TriangularFunction(new List<double> { 2500, 3000, 3500}),
+            Absolute = true
         };
         public static LinguisticVariable moreThan10000 = new LinguisticVariable
         {
             Name = "Much more than 10000",
             MembershipFunction = new TrapezoidFunction(new List<double> { 10000, 15000, 45000, 45000 }),
+            Absolute = true
         };
         #endregion
     }
