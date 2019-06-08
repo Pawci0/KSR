@@ -89,6 +89,9 @@
     <Compile Include="DataModel\Enums\Sex.cs" />
     <Compile Include="DataModel\Enums\Tested.cs" />
     <Compile Include="DataModel\LiftingDataContext.cs" />
+    <Compile Include="FuzzyLogic\DegreeOfTruth.cs" />
+    <Compile Include="FuzzyLogic\LinguisticVariable.cs" />
+    <Compile Include="FuzzyLogic\StaticVariables.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
