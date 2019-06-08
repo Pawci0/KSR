@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Membership\IMembershipFunction.cs" />
+    <Compile Include="Membership\TrapezoidFunction.cs" />
     <Compile Include="Membership\TriangularFunction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
