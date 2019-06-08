@@ -1,0 +1,38 @@
+Age 8-89
+
+BodyweightKg 40.1-206.6
+
+Best3SquatKg 20.41-517.5
+
+Best3BenchKg 18.14-415.04
+
+Best3DeadliftKg 24.95-430
+
+TotalKg 65.77-1260.99
+
+Place 1-120
+
+Wilks 76.96-722.56
+
+McCulloch 76.96-741.24
+
+Glossbrenner 74.18-680.37
+
+IPFPoints 44-964.96
+
+
+Sex {Male, Female}
+
+Equipment {Wraps, Multi-ply, Raw, Single-ply}
+
+Tested {Yes, No}
+
+MeetName {	Nationals, 
+		European Championships,
+		World Powerlifting Championships,
+		World Championships,
+		Raw Nationals,
+		Collegiate Nationals,
+		World Cup,
+		Russian Powerlifting Championships,
+		World Masters Powerlifting Championships}
