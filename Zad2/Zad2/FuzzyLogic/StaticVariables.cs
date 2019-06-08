@@ -329,16 +329,28 @@ namespace Zad2.FuzzyLogic
             MembershipFunction = new TriangularFunction(new List<double> { 0, 0.15, 0.3 }),
             Absolute = false
         };
+        public static LinguisticVariable lessThanThird = new LinguisticVariable
+        {
+            Name = "Less than a third",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 0, 0, 0.3, 0.35 }),
+            Absolute = false
+        };
         public static LinguisticVariable aroundHalf = new LinguisticVariable
         {
             Name = "Around half",
             MembershipFunction = new TriangularFunction(new List<double> { 0.4, 0.5, 0.6 }),
             Absolute = false
         };
+        public static LinguisticVariable majority = new LinguisticVariable
+        {
+            Name = "Majority",
+            MembershipFunction = new TriangularFunction(new List<double> { 0.75, 0.8, 0.9 }),
+            Absolute = false
+        };
         public static LinguisticVariable almostAll = new LinguisticVariable
         {
-            Name = "Almost all",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 0.8, 0.9, 1, 1 }),
+            Name = "All",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 0.85, 0.9, 1, 1 }),
             Absolute = false
         };
 
