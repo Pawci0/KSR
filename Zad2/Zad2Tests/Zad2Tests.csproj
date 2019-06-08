@@ -56,6 +56,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Membership\DiscreteFunctionTests.cs" />
     <Compile Include="Membership\TrapezoidFunctionTests.cs" />
     <Compile Include="Membership\TriangularFunctionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

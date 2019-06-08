@@ -69,6 +69,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Membership\DiscreteFunction.cs" />
     <Compile Include="Membership\IMembershipFunction.cs" />
     <Compile Include="Membership\TrapezoidFunction.cs" />
     <Compile Include="Membership\TriangularFunction.cs" />
