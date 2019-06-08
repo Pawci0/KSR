@@ -14,25 +14,25 @@ namespace Zad2.FuzzyLogic
         {
             Name = "Young",
             MemberToExtract = "Age",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 8, 8, 14, 18 })
+            extractor = e => new TrapezoidFunction(new List<double> { 8, 8, 14, 18 }).GetMembership(e.Age)
         };
         public static LinguisticVariable ageYoungAdult = new LinguisticVariable
         {
             Name = "Young Adult",
             MemberToExtract = "Age",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 19, 23, 27, 30 })
+            extractor = e => new TrapezoidFunction(new List<double> { 19, 23, 27, 30 }).GetMembership(e.Age)
         };
         public static LinguisticVariable ageAdult = new LinguisticVariable
         {
             Name = "Adult",
             MemberToExtract = "Age",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 31, 35, 45, 50 })
+            extractor = e => new TrapezoidFunction(new List<double> { 31, 35, 45, 50 }).GetMembership(e.Age)
         };
         public static LinguisticVariable ageOld = new LinguisticVariable
         {
             Name = "Old",
             MemberToExtract = "Age",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 51, 60, 90, 90 })
+            extractor = e => new TrapezoidFunction(new List<double> { 51, 60, 90, 90 }).GetMembership(e.Age)
         };
         #endregion
         #region weight
@@ -40,19 +40,19 @@ namespace Zad2.FuzzyLogic
         {
             Name = "Light",
             MemberToExtract = "BodyweightKg",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 40, 40, 60, 70 })
+            extractor = e => new TrapezoidFunction(new List<double> { 40, 40, 60, 70 }).GetMembership(e.Weight)
         };
         public static LinguisticVariable weightRegular = new LinguisticVariable
         {
             Name = "Regular",
             MemberToExtract = "BodyweightKg",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 71, 80, 100, 110 })
+            extractor = e => new TrapezoidFunction(new List<double> { 71, 80, 100, 110 }).GetMembership(e.Weight)
         };
         public static LinguisticVariable weightHeavy = new LinguisticVariable
         {
             Name = "Heavy",
             MemberToExtract = "BodyweightKg",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 111, 130, 210, 210 })
+            extractor = e => new TrapezoidFunction(new List<double> { 111, 130, 210, 210 }).GetMembership(e.Weight)
         };
         #endregion
         #region Best3SquatKg
@@ -60,25 +60,25 @@ namespace Zad2.FuzzyLogic
         {
             Name = "Low",
             MemberToExtract = "Best3SquatKg",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 20, 20, 60, 70 })
+            extractor = e => new TrapezoidFunction(new List<double> { 20, 20, 60, 70 }).GetMembership(e.Squat)
         };
         public static LinguisticVariable squatRegular = new LinguisticVariable
         {
             Name = "Regular",
             MemberToExtract = "Best3SquatKg",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 71, 100, 150, 200 })
+            extractor = e => new TrapezoidFunction(new List<double> { 71, 100, 150, 200 }).GetMembership(e.Squat)
         };
         public static LinguisticVariable squatHigh = new LinguisticVariable
         {
             Name = "High",
             MemberToExtract = "Best3SquatKg",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 201, 250, 300, 350 })
+            extractor = e => new TrapezoidFunction(new List<double> { 201, 250, 300, 350 }).GetMembership(e.Squat)
         };
         public static LinguisticVariable squatVeryHigh = new LinguisticVariable
         {
             Name = "Very High",
             MemberToExtract = "Best3SquatKg",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 351, 400, 520, 520 })
+            extractor = e => new TrapezoidFunction(new List<double> { 351, 400, 520, 520 }).GetMembership(e.Squat)
         };
         #endregion
         #region Best3BenchKg
@@ -86,25 +86,25 @@ namespace Zad2.FuzzyLogic
         {
             Name = "Low",
             MemberToExtract = "Best3BenchKg",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 20, 20, 60, 70 })
+            extractor = e => new TrapezoidFunction(new List<double> { 20, 20, 60, 70 }).GetMembership(e.Bench)
         };
         public static LinguisticVariable benchRegular = new LinguisticVariable
         {
             Name = "Regular",
             MemberToExtract = "Best3BenchKg",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 71, 100, 150, 200 })
+            extractor = e => new TrapezoidFunction(new List<double> { 71, 100, 150, 200 }).GetMembership(e.Bench)
         };
         public static LinguisticVariable benchHigh = new LinguisticVariable
         {
             Name = "High",
             MemberToExtract = "Best3BenchKg",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 201, 220, 280, 300 })
+            extractor = e => new TrapezoidFunction(new List<double> { 201, 220, 280, 300 }).GetMembership(e.Bench)
         };
         public static LinguisticVariable benchVeryHigh = new LinguisticVariable
         {
             Name = "Very High",
             MemberToExtract = "Best3BenchKg",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 301, 350, 420, 420 })
+            extractor = e => new TrapezoidFunction(new List<double> { 301, 350, 420, 420 }).GetMembership(e.Bench)
         };
         #endregion
         #region Best3DeadliftKg
@@ -112,25 +112,25 @@ namespace Zad2.FuzzyLogic
         {
             Name = "Low",
             MemberToExtract = "Best3DeadliftKg",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 20, 20, 60, 70 })
+            extractor = e => new TrapezoidFunction(new List<double> { 20, 20, 60, 70 }).GetMembership(e.Deadlift)
         };
         public static LinguisticVariable deadliftRegular = new LinguisticVariable
         {
             Name = "Regular",
             MemberToExtract = "Best3DeadliftKg",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 71, 100, 150, 200 })
+            extractor = e => new TrapezoidFunction(new List<double> { 71, 100, 150, 200 }).GetMembership(e.Deadlift)
         };
         public static LinguisticVariable deadliftHigh = new LinguisticVariable
         {
             Name = "High",
             MemberToExtract = "Best3DeadliftKg",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 201, 220, 280, 300 })
+            extractor = e => new TrapezoidFunction(new List<double> { 201, 220, 280, 300 }).GetMembership(e.Deadlift)
         };
         public static LinguisticVariable deadliftVeryHigh = new LinguisticVariable
         {
             Name = "Very High",
             MemberToExtract = "Best3DeadliftKg",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 301, 350, 440, 440 })
+            extractor = e => new TrapezoidFunction(new List<double> { 301, 350, 440, 440 }).GetMembership(e.Deadlift)
         };
         #endregion
         #region Total
@@ -138,25 +138,25 @@ namespace Zad2.FuzzyLogic
         {
             Name = "Low",
             MemberToExtract = "Total",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 60, 100, 200, 300 })
+            extractor = e => new TrapezoidFunction(new List<double> { 60, 100, 200, 300 }).GetMembership(e.Total)
         };
         public static LinguisticVariable totalRegular = new LinguisticVariable
         {
             Name = "Regular",
             MemberToExtract = "Total",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 301, 350, 450, 500 })
+            extractor = e => new TrapezoidFunction(new List<double> { 301, 350, 450, 500 }).GetMembership(e.Total)
         };
         public static LinguisticVariable totalHigh = new LinguisticVariable
         {
             Name = "High",
             MemberToExtract = "Total",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 601, 700, 800, 900 })
+            extractor = e => new TrapezoidFunction(new List<double> { 601, 700, 800, 900 }).GetMembership(e.Total)
         };
         public static LinguisticVariable totalVeryHigh = new LinguisticVariable
         {
             Name = "Very High",
             MemberToExtract = "Total",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 901, 1000, 1300, 1300 })
+            extractor = e => new TrapezoidFunction(new List<double> { 901, 1000, 1300, 1300 }).GetMembership(e.Total)
         };
         #endregion
         #region Place
