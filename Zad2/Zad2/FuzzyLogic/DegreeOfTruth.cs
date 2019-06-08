@@ -10,7 +10,7 @@ namespace Zad2.FuzzyLogic
     {
         public double CalculateDOT(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer)
         {
-            return 0;
+            throw new NotImplementedException();
         }
     }
 }
