@@ -36,10 +36,7 @@ namespace Zad2
             var context = new LiftingDataContext(connection);
             foreach (var company in context.Entry)
             {
-                var xd1 = company.GetSex();
-                var xd2 = company.GetEquipment();
-                var xd3 = company.GetMeetName();
-                var xd4 = company.GetTested();
+
             }
         }
     }

@@ -11,190 +11,235 @@ namespace Zad2.DataModel
     public partial class Entry
     {
 
-        private string _Sex;
+        private string _sex;
 
-        private double _Weight;
+        private double _weight;
 
-        private string _Equipment;
+        private string _equipment;
 
-        private double _Age;
+        private double _age;
 
-        private double _Squat;
+        private double _squat;
 
-        private double _Bench;
+        private double _bench;
 
-        private double _Deadlift;
+        private double _deadlift;
 
-        private double _TotalKg;
+        private double _totalKg;
 
-        private int _Place;
+        private int _place;
 
-        private string _Tested;
+        private string _tested;
 
-        private string _MeetName;
+        private string _meetName;
+
+        private Enums.Equipment _equipmentEnum;
+
+        private Enums.Sex _sexEnum;
+
+        private Enums.MeetName _meetNameEnum;
+
+        private Enums.Tested _testedEnum;
 
         public Entry()
         {
         }
 
         [Column(Name = "Sex")]
-        private string Sex
+        private string _Sex
         {
             set
             {
-                if ((this._Sex != value))
+                if ((this._sex != value))
                 {
-                    this._Sex = value;
+                    Enum.TryParse(value, out _sexEnum);
+                    this._sex = value;
                 }
             }
         }
 
-        public Enums.Sex GetSex()
+        public Enums.Sex Sex
         {
-            Enums.Sex ret;
-            Enum.TryParse(_Sex, out ret);
-            return ret;
+            get
+            {
+                return _sexEnum;
+            }
         }
 
         [Column(Name = "BodyweightKg")]
-        private double Weight
+        public double Weight
         {
+            get
+            {
+                return _weight;
+            }
             set
             {
-                if ((this._Weight != value))
+                if ((this._weight != value))
                 {
-                    this._Weight = value;
+                    this._weight = value;
                 }
             }
         }
 
         [Column(Name = "Equipment")]
-        private string Equipment
+        private string _Equipment
         {
             set
             {
-                if ((this._Equipment != value))
+                if ((this._equipment != value))
                 {
-                    this._Equipment = value;
+                    Enums.EnumParser.Parse(value, out _equipmentEnum);
+                    this._equipment = value;
                 }
             }
         }
+        
 
-        public Enums.Equipment GetEquipment()
+        public Enums.Equipment Equipment
         {
-            Enums.Equipment ret;
-            Enums.EnumParser.Parse(_Equipment, out ret);
-            return ret;
+            get
+            {
+                return _equipmentEnum;
+            }
         }
 
         [Column(Name = "Age")]
-        private double Age
+        public double Age
         {
+            get
+            {
+                return _age;
+            }
             set
             {
-                if ((this._Age != value))
+                if ((this._age != value))
                 {
-                    this._Age = value;
+                    this._age = value;
                 }
             }
         }
 
         [Column(Name = "Best3SquatKg")]
-        private double Squat
+        public double Squat
         {
+            get
+            {
+                return _squat;
+            }
             set
             {
-                if ((this._Squat != value))
+                if ((this._squat != value))
                 {
-                    this._Squat = value;
+                    this._squat = value;
                 }
             }
         }
 
         [Column(Name = "Best3BenchKg")]
-        private double Bench
+        public double Bench
         {
+            get
+            {
+                return _bench;
+            }
             set
             {
-                if ((this._Bench != value))
+                if ((this._bench != value))
                 {
-                    this._Bench = value;
+                    this._bench = value;
                 }
             }
         }
 
         [Column(Name = "Best3DeadliftKg")]
-        private double Deadlift
+        public double Deadlift
         {
+            get
+            {
+                return _deadlift;
+            }
             set
             {
-                if ((this._Deadlift != value))
+                if ((this._deadlift != value))
                 {
-                    this._Deadlift = value;
+                    this._deadlift = value;
                 }
             }
         }
 
         [Column(Name = "TotalKg")]
-        private double TotalKg
+        public double TotalKg
         {
+            get
+            {
+                return _totalKg;
+            }
             set
             {
-                if ((this._TotalKg != value))
+                if ((this._totalKg != value))
                 {
-                    this._TotalKg = value;
+                    this._totalKg = value;
                 }
             }
         }
 
         [Column(Name = "Place")]
-        private int Place
+        public int Place
         {
+            get
+            {
+                return _place;
+            }
             set
             {
-                if ((this._Place != value))
+                if ((this._place != value))
                 {
-                    this._Place = value;
+                    this._place = value;
                 }
             }
         }
 
         [Column(Name = "Tested")]
-        private string Tested
+        private string _Tested
         {
             set
             {
-                if ((this._Tested != value))
+                if ((this._tested != value))
                 {
-                    this._Tested = value;
+                    Enum.TryParse(value, out _testedEnum);
+                    this._tested = value;
                 }
             }
         }
 
-        public Enums.Tested GetTested()
+        public Enums.Tested Tested
         {
-            Enums.Tested ret;
-            Enum.TryParse(_Tested, out ret);
-            return ret;
+            get
+            {
+                return _testedEnum;
+            }
         }
 
         [Column(Name = "MeetName")]
-        private string MeetName
+        private string _MeetName
         {
             set
             {
-                if ((this._MeetName != value))
+                if ((this._meetName != value))
                 {
-                    this._MeetName = value;
+                    Enums.EnumParser.Parse(value, out _meetNameEnum);
+                    this._meetName = value;
                 }
             }
         }
 
-        public Enums.MeetName GetMeetName()
+        public Enums.MeetName MeetName
         {
-            Enums.MeetName ret;
-            Enums.EnumParser.Parse(_MeetName, out ret);
-            return ret;
+            get
+            {
+                return _meetNameEnum;
+            }
         }
     }
 }
