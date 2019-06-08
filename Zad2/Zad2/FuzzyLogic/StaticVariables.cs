@@ -14,29 +14,25 @@ namespace Zad2.FuzzyLogic
         {
             Name = "Young",
             MemberToExtract = "Age",
-            MembershipFunction = new TrapezoidFunction(),
-            MembershipFunctionParameters = new List<double> { 8, 18 }
+            MembershipFunction = new TrapezoidFunction(new List<double> { 8, 8, 14, 18 })
         };
         public static LinguisticVariable ageYoungAdult = new LinguisticVariable
         {
             Name = "Young Adult",
             MemberToExtract = "Age",
-            MembershipFunction = new TrapezoidFunction(),
-            MembershipFunctionParameters = new List<double> { 19, 30 }
+            MembershipFunction = new TrapezoidFunction(new List<double> { 19, 23, 27, 30 })
         };
         public static LinguisticVariable ageAdult = new LinguisticVariable
         {
             Name = "Adult",
             MemberToExtract = "Age",
-            MembershipFunction = new TrapezoidFunction(),
-            MembershipFunctionParameters = new List<double> { 31, 50 }
+            MembershipFunction = new TrapezoidFunction(new List<double> { 31, 35, 45, 50 })
         };
         public static LinguisticVariable ageOld = new LinguisticVariable
         {
             Name = "Old",
             MemberToExtract = "Age",
-            MembershipFunction = new TrapezoidFunction(),
-            MembershipFunctionParameters = new List<double> { 51, 90 }
+            MembershipFunction = new TrapezoidFunction(new List<double> { 51, 60, 90, 90 })
         };
         #endregion
     }

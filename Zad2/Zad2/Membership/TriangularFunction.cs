@@ -16,6 +16,11 @@ namespace Zad2.Membership
         }
         private double a, b, c;
 
+        public TriangularFunction(List<double> parameters)
+        {
+            Parameters = parameters;
+        }
+
         public double GetMembership(double x)
         {
             if (x <= a)

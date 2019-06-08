@@ -17,6 +17,11 @@ namespace Zad2.Membership
 
         private double a, b, c, d;
 
+        public TrapezoidFunction(List<double> parameters)
+        {
+            Parameters = parameters;
+        }
+
         public double GetMembership(double x)
         {
             if (x <= a)
