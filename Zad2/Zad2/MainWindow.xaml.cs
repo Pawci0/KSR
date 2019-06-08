@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Data.Sqlite;
+using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Zad2.DataModel;
 
 namespace Zad2
 {
@@ -23,6 +26,21 @@ namespace Zad2
         public MainWindow()
         {
             InitializeComponent();
+            Loaded += Onloaded;
+        }
+
+        private void Onloaded(object sender, RoutedEventArgs e)
+        {
+            var connection = new SqliteConnection(
+            @"Data Source=C:\Users\Paweł\source\repos\ksr\Zad2\db");
+            var context = new LiftingDataContext(connection);
+            foreach (var company in context.Entry)
+            {
+                var xd1 = company.GetSex();
+                var xd2 = company.GetEquipment();
+                var xd3 = company.GetMeetName();
+                var xd4 = company.GetTested();
+            }
         }
     }
 }
