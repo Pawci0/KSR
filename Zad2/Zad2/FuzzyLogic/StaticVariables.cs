@@ -159,5 +159,177 @@ namespace Zad2.FuzzyLogic
             MembershipFunction = new TrapezoidFunction(new List<double> { 901, 1000, 1300, 1300 })
         };
         #endregion
+        #region Place
+        public static LinguisticVariable placeVeryLow = new LinguisticVariable
+        {
+            Name = "Very Low",
+            MemberToExtract = "Place",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 120, 120, 70, 50 })
+        };
+        public static LinguisticVariable placeLow = new LinguisticVariable
+        {
+            Name = "Low",
+            MemberToExtract = "Place",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 51, 40, 25, 20 })
+        };
+        public static LinguisticVariable placeAlmost = new LinguisticVariable
+        {
+            Name = "Almost There",
+            MemberToExtract = "Place",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 19, 13, 4, 4 })
+        };
+        public static LinguisticVariable placeHigh = new LinguisticVariable
+        {
+            Name = "High",
+            MemberToExtract = "Place",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 3, 2, 1, 1 })
+        };
+        #endregion
+        #region Wilks
+        public static LinguisticVariable wilksLow = new LinguisticVariable
+        {
+            Name = "Low",
+            MemberToExtract = "Wilks",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 75, 100, 120, 150 })
+        };
+        public static LinguisticVariable wilksRegular = new LinguisticVariable
+        {
+            Name = "Regular",
+            MemberToExtract = "Wilks",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 151, 200, 250, 300 })
+        };
+        public static LinguisticVariable wilksHigh = new LinguisticVariable
+        {
+            Name = "High",
+            MemberToExtract = "Wilks",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 301, 350, 450, 500 })
+        };
+        public static LinguisticVariable wilksVeryHigh = new LinguisticVariable
+        {
+            Name = "Very High",
+            MemberToExtract = "Wilks",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 501, 600, 750, 750 })
+        };
+        #endregion
+        #region McCulloch
+        public static LinguisticVariable mcCullochLow = new LinguisticVariable
+        {
+            Name = "Low",
+            MemberToExtract = "McCulloch",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 75, 100, 120, 150 })
+        };
+        public static LinguisticVariable mcCullochRegular = new LinguisticVariable
+        {
+            Name = "Regular",
+            MemberToExtract = "McCulloch",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 151, 200, 250, 300 })
+        };
+        public static LinguisticVariable mcCullochHigh = new LinguisticVariable
+        {
+            Name = "High",
+            MemberToExtract = "McCulloch",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 301, 350, 450, 500 })
+        };
+        public static LinguisticVariable mcCullochVeryHigh = new LinguisticVariable
+        {
+            Name = "Very High",
+            MemberToExtract = "McCulloch",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 501, 600, 750, 750 })
+        };
+        #endregion
+        #region Glossbrenner
+        public static LinguisticVariable glossbrennerLow = new LinguisticVariable
+        {
+            Name = "Low",
+            MemberToExtract = "Glossbrenner",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 75, 100, 120, 150 })
+        };
+        public static LinguisticVariable glossbrennerRegular = new LinguisticVariable
+        {
+            Name = "Regular",
+            MemberToExtract = "Glossbrenner",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 151, 200, 250, 300 })
+        };
+        public static LinguisticVariable glossbrennerHigh = new LinguisticVariable
+        {
+            Name = "High",
+            MemberToExtract = "Glossbrenner",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 301, 350, 450, 500 })
+        };
+        public static LinguisticVariable glossbrennerVeryHigh = new LinguisticVariable
+        {
+            Name = "Very High",
+            MemberToExtract = "Glossbrenner",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 501, 600, 750, 750 })
+        };
+        #endregion
+        #region IPFPoints
+        public static LinguisticVariable ipfLow = new LinguisticVariable
+        {
+            Name = "Low",
+            MemberToExtract = "IPFPoints",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 75, 100, 120, 150 })
+        };
+        public static LinguisticVariable ipfRegular = new LinguisticVariable
+        {
+            Name = "Regular",
+            MemberToExtract = "IPFPoints",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 151, 200, 300, 400 })
+        };
+        public static LinguisticVariable ipfHigh = new LinguisticVariable
+        {
+            Name = "High",
+            MemberToExtract = "IPFPoints",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 401, 500, 600, 700 })
+        };
+        public static LinguisticVariable ipfVeryHigh = new LinguisticVariable
+        {
+            Name = "Very High",
+            MemberToExtract = "IPFPoints",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 701, 800, 1000, 1000 })
+        };
+        #endregion
+
+        #region Gender
+        public static LinguisticVariable genderMale = new LinguisticVariable
+        {
+            Name = "Male",
+            MemberToExtract = "Sex",
+            MembershipFunction = new DiscreteFunction(new List<double> { 1, 0 })
+        };
+        public static LinguisticVariable genderFemale = new LinguisticVariable
+        {
+            Name = "Female",
+            MemberToExtract = "Sex",
+            MembershipFunction = new DiscreteFunction(new List<double> { 0, 1 })
+        };
+        #endregion
+        #region Tested
+        public static LinguisticVariable testedNo = new LinguisticVariable
+        {
+            Name = "No",
+            MemberToExtract = "Tested",
+            MembershipFunction = new DiscreteFunction(new List<double> { 0, 1 })
+        };
+        public static LinguisticVariable testedYes = new LinguisticVariable
+        {
+            Name = "Yes",
+            MemberToExtract = "Tested",
+            MembershipFunction = new DiscreteFunction(new List<double> { 1, 0 })
+        };
+        #endregion
+
+        #region Quantizers
+        public static LinguisticVariable around3000 = new LinguisticVariable
+        {
+            Name = "Around 3000",
+            MembershipFunction = new TriangularFunction(new List<double> { 2500, 3000, 3500})
+        };
+        public static LinguisticVariable moreThan10000 = new LinguisticVariable
+        {
+            Name = "Much more than 10000",
+            MembershipFunction = new TriangularFunction(new List<double> { 10000, 15000, 45000 })
+        };
+        #endregion
     }
 }
