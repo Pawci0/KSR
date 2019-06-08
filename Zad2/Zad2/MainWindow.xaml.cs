@@ -35,7 +35,7 @@ namespace Zad2
             var connection = new SqliteConnection(
             @"Data Source=D:\Studia\ksr\KSR\Zad2\db");
             var context = new LiftingDataContext(connection);
-            double aaaaaaaaa = DegreeOfTruth.CalculateDOT(StaticVariables.around3000, StaticVariables.genderMale, StaticVariables.ageYoung, context.Entry.ToList());
+            double aaaaaaaaa = DegreeOfTruth.CalculateDOT(StaticVariables.lessThan5000, StaticVariables.genderMale, StaticVariables.ageYoung, context.Entry.ToList());
             aaaaaaaaa++;
         }
     }

@@ -349,6 +349,12 @@ namespace Zad2.FuzzyLogic
             MembershipFunction = new TriangularFunction(new List<double> { 2500, 3000, 3500}),
             Absolute = true
         };
+        public static LinguisticVariable lessThan5000 = new LinguisticVariable
+        {
+            Name = "Less than 5000",
+            MembershipFunction = new TriangularFunction(new List<double> { 0, 0, 5000 }),
+            Absolute = true
+        };
         public static LinguisticVariable moreThan10000 = new LinguisticVariable
         {
             Name = "Much more than 10000",

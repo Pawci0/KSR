@@ -18,6 +18,8 @@ namespace Zad2.FuzzyLogic
                 up += Math.Min(qualifier.Extractor(e), summarizer.Extractor(e));
                 down += qualifier.Extractor(e);
             }
+            if(quantificator.Absolute)
+                return quantificator.MembershipFunction.GetMembership(up);
             return quantificator.MembershipFunction.GetMembership(up / down);
         }
     }
