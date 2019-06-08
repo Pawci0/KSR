@@ -9,8 +9,7 @@ namespace Zad2.Membership.Tests
         [TestMethod()]
         public void GetMembershipTest()
         {
-            IMembershipFunction function = new TriangularFunction();
-            function.Parameters = new List<double> { 1, 2, 3 };
+            IMembershipFunction function = new TriangularFunction(new List<double> { 1, 2, 3 });
             Assert.AreEqual(1.0, function.GetMembership(2));
             Assert.AreEqual(0.0, function.GetMembership(0.5));
             Assert.AreEqual(0.0, function.GetMembership(3.1));

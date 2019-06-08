@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Zad2.DataModel;
+using Zad2.FuzzyLogic;
 
 namespace Zad2
 {
@@ -32,12 +33,10 @@ namespace Zad2
         private void Onloaded(object sender, RoutedEventArgs e)
         {
             var connection = new SqliteConnection(
-            @"Data Source=C:\Users\Paweł\source\repos\ksr\Zad2\db");
+            @"Data Source=D:\Studia\ksr\KSR\Zad2\db");
             var context = new LiftingDataContext(connection);
-            foreach (var company in context.Entry)
-            {
-
-            }
+            double aaaaaaaaa = DegreeOfTruth.CalculateDOT(StaticVariables.around3000, StaticVariables.genderMale, StaticVariables.ageYoung, context.Entry.ToList());
+            aaaaaaaaa++;
         }
     }
 }
