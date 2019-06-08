@@ -1,0 +1,6 @@
+1. liczba wyst¹pieñ s³ów kluczowych dla danej klasy
+zrobione -  2. liczba s³ów zaczynaj¹cych siê du¿¹ liter¹
+zrobione - 3. d³ugoœæ artyku³u
+zrobione - 4. œrednia d³ugoœæ s³owa
+zrobione - 5. litera na jak¹ zaczyna siê najwiêcej s³ów zaczynaj¹cych siê z du¿ej litery
+zrobione - 6. liczba unikalnych s³ów
