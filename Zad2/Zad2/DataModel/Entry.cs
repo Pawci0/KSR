@@ -241,5 +241,17 @@ namespace Zad2.DataModel
                 return _meetNameEnum;
             }
         }
+
+        [Column(Name = "Wilks")]
+        public double Wilks { get; set; }
+
+        [Column(Name = "McCulloch")]
+        public double McCulloch { get; set; }
+
+        [Column(Name = "Glossbrenner")]
+        public double Glossbrenner { get; set; }
+
+        [Column(Name = "IPFPoints")]
+        public double IPFPoints { get; set; }
     }
 }
