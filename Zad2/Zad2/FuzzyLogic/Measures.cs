@@ -9,6 +9,26 @@ namespace Zad2.FuzzyLogic
 {
     public class Measures
     {
+        public static double AverageMeasure(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
+        {
+            List<double> measureValues = new List<double>
+            {
+                DegreeOfTruth(quantificator, qualifier, summarizer, entries),
+                DegreeOfImprecision(quantificator, qualifier, summarizer, entries),
+                DegreeOfCovering(quantificator, qualifier, summarizer, entries),
+                DegreeOfAppropriateness(quantificator, qualifier, summarizer, entries),
+                LengthOfSummary(quantificator, qualifier, summarizer, entries),
+                DegreeOfQuantifierImprecision(quantificator, qualifier, summarizer, entries),
+                DegreeOfQuantifierCardinality(quantificator, qualifier, summarizer, entries),
+                DegreeOfSummarizerCardinality(quantificator, qualifier, summarizer, entries),
+                DegreeOfQualifierImprecision(quantificator, qualifier, summarizer, entries),
+                DegreeOfQualifierCardinality(quantificator, qualifier, summarizer, entries),
+                LengthOfQualifier(quantificator, qualifier, summarizer, entries)
+            };
+
+            return measureValues.Average();
+        }
+
         //T1
         public static double DegreeOfTruth(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
         {
