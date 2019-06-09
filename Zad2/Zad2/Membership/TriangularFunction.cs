@@ -32,5 +32,10 @@ namespace Zad2.Membership
             else
                 return 0.0;
         }
+
+        public List<IMembershipFunction> GetAllFunctions()
+        {
+            return new List<IMembershipFunction> { this };
+        }
     }
 }

@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Zad2.Membership
 {
-    public interface IMembershipDecorator : IMembershipFunction
+    public interface ICompoundMembershipFunction : IMembershipFunction
     {
         IMembershipFunction Function1 { get; set; }
         IMembershipFunction Function2 { get; set; }
-        new double GetMembership(double x);
     }
 }
