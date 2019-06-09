@@ -20,6 +20,7 @@ namespace Zad2.ViewModel
         public LinguisticVariable SelectedSummarizer { get; set; }
         private ObservableCollection<LinguisticVariable> quantifiers;
         public ICommand GenerateCommand { get; set; }
+        public List<KeyValuePair<double, string>> Summaries { get; private set; }
 
         public MainViewModel()
         {
@@ -35,15 +36,14 @@ namespace Zad2.ViewModel
 
         private void Generate()
         {
-            List<KeyValuePair<double, string>> summaries = new List<KeyValuePair<double, string>>();
+            Summaries = new List<KeyValuePair<double, string>>();
             foreach (var quantifier in quantifiers)
             {
-                summaries.Add(new KeyValuePair<double, string>(
+                Summaries.Add(new KeyValuePair<double, string>(
                     DegreeOfTruth.CalculateDOT(quantifier, SelectedQualifier, SelectedSummarizer, dataContext.Entry.ToList()),
                     quantifier.Name + " people being/having " + SelectedQualifier.MemberAndName + " are/have " + SelectedSummarizer.MemberAndName));
             }
-            summaries.Sort((x, y) => y.Key.CompareTo(x.Key));
-            int i = 1;
+            Summaries.Sort((x, y) => y.Key.CompareTo(x.Key));
         }
     }
 }
