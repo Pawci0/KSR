@@ -14,7 +14,7 @@
         <Label Content="Qualifier" HorizontalAlignment="Left" Margin="61,80,0,0" VerticalAlignment="Top"/>
         <Label Content="Summarizer" HorizontalAlignment="Left" Margin="241,80,0,0" VerticalAlignment="Top"/>
         <Button Name="generateButton" Content="Generate" HorizontalAlignment="Left" Margin="120,141,0,0" VerticalAlignment="Top" Width="75" Command="{Binding GenerateCommand}"/>
-        <TextBlock Name="outputBox" HorizontalAlignment="Left" Margin="120,180,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="140" Width="320"/>
+        <TextBlock Name="outputBox" HorizontalAlignment="Left" Margin="120,180,0,0" TextWrapping="Wrap" Text="{Binding Output}" VerticalAlignment="Top" Height="140" Width="320" />
 
     </Grid>
 </Window>
