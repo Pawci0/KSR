@@ -59,5 +59,10 @@ namespace Zad2.FuzzyLogic
         {
             return MembershipFunction.Cardinality();
         }
+
+        public List<FuzzySet> GetAllFuzzySets()
+        {
+            return new List<FuzzySet> { this };
+        }
     }
 }

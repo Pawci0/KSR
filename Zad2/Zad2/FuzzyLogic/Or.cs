@@ -25,5 +25,10 @@ namespace Zad2.FuzzyLogic
         {
             return fuzzySet1.DegreeOfFuzziness(entries) * fuzzySet2.DegreeOfFuzziness(entries);
         }
+
+        public new List<FuzzySet> GetAllFuzzySets()
+        {
+            return new List<FuzzySet> { fuzzySet1, fuzzySet2 };
+        }
     }
 }
