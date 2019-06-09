@@ -28,12 +28,12 @@ namespace Zad2.FuzzyLogic
         public static double DegreeOfImprecision(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
         {
             double ret=1;
-            var xd = summarizer.FuzzySet.DegreeOfFuzzinessForAllFunctions(entries);
-            foreach (var DoF in xd)
+            var fuzzySets = summarizer.FuzzySet.GetAllFuzzySets();
+            foreach (var set in fuzzySets)
             {
-                ret *= DoF;
+                ret *= set.DegreeOfFuzziness(entries);
             }
-            ret = Math.Pow(ret, 1 / xd.Count);
+            ret = Math.Pow(ret, 1 / fuzzySets.Count);
             return 1 - ret;
         }
 
@@ -76,30 +76,64 @@ namespace Zad2.FuzzyLogic
         //T5
         public static double LengthOfSummary(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
         {
-            var nOfSummarizers = summarizer.MembershipFunction.GetAllFunctions().Count;
+            var nOfSummarizers = summarizer.FuzzySet.GetAllFuzzySets().Count;
             return 2 * Math.Pow(1.0 / 2.0, nOfSummarizers);
         }
 
         //T6
         public static double DegreeOfQuantifierImprecision(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
         {
-            double ret = quantificator.FuzzySet.Support(entries).Count;
-            if (!quantificator.Absolute)
+            var ret = (quantificator.MembershipFunction.Parameters.Last()
+                       - quantificator.MembershipFunction.Parameters.First());
+
+            if (quantificator.Absolute)
             {
                 ret /= (double) entries.Count;
             }
-            return ret;
+            return 1 - ret;
         }
 
         //T7
         public static double DegreeOfQuantifierCardinality(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
         {
-            double ret = quantificator.FuzzySet.Cardinality();
-            if (!quantificator.Absolute)
+            double ret = quantificator.MembershipFunction.Cardinality();
+            if (quantificator.Absolute)
             {
                 ret /= (double)entries.Count;
             }
-            return ret;
+            return 1 - ret;
+        }
+
+        //T8
+        public static double DegreeOfSummarizerCardinality(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
+        {
+            double ret = 1;
+            var fuzzySets = summarizer.FuzzySet.GetAllFuzzySets();
+            foreach (var set in fuzzySets)
+            {
+                ret *= set.Cardinality() / entries.Count;
+            }
+            ret = Math.Pow(ret, 1.0 / fuzzySets.Count);
+            return 1 - ret;
+        }
+
+        //T9
+        public static double DegreeOfQualifierImprecision(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
+        {
+            return 1 - qualifier.FuzzySet.DegreeOfFuzziness(entries);
+        }
+
+        //T10
+        public static double DegreeOfQualifierCardinality(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
+        {
+            return 1 - (qualifier.FuzzySet.Cardinality() / entries.Count);
+        }
+
+        //T11
+        public static double LengthOfQualifier(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
+        {
+            var nOfSummarizers = qualifier.FuzzySet.GetAllFuzzySets().Count;
+            return 2 * Math.Pow(1.0 / 2.0, nOfSummarizers);
         }
     }
 }
