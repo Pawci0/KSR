@@ -28,7 +28,7 @@ namespace Zad2.FuzzyLogic
 
         public new List<FuzzySet> GetAllFuzzySets()
         {
-            return new List<FuzzySet> { fuzzySet1, fuzzySet2 };
+            return fuzzySet1.GetAllFuzzySets().Concat(fuzzySet2.GetAllFuzzySets()).ToList();
         }
     }
 }
