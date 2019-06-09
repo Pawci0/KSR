@@ -14,6 +14,12 @@ namespace Zad2.Membership
         ///to w zasadzie problem tego, ze w imembershipfunction niepotrzebnie jest to property
         public List<double> Parameters { get => throw new NotSupportedException(); set => throw new NotSupportedException(); }
 
+        public MultiplyDecorator(IMembershipDecorator one, IMembershipDecorator two)
+        {
+            Function1 = one;
+            Function2 = two;
+        }
+
         public double GetMembership(double x)
         {
             return Math.Min(Function1.GetMembership(x), Function2.GetMembership(x));
