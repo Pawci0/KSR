@@ -10,15 +10,16 @@ namespace Zad2.FuzzyLogic
 {
     public class FuzzySet
     {
+
         public IMembershipFunction MembershipFunction { get; set; }
         public Func<Entry, double> FieldExtractor { get; set; }
 
-        public double GetMembership(Entry entry)
+        public virtual double GetMembership(Entry entry)
         {
             return MembershipFunction.GetMembership(FieldExtractor(entry));
         }
 
-        private List<Entry> Support(List<Entry> entries, IMembershipFunction function)
+        private  List<Entry> Support(List<Entry> entries, IMembershipFunction function)
         {
             List<Entry> result = new List<Entry>();
             entries.ForEach((e) => {
@@ -30,7 +31,7 @@ namespace Zad2.FuzzyLogic
             return result;
         }
 
-        public List<Entry> Support(List<Entry> entries)
+        public virtual List<Entry> Support(List<Entry> entries)
         {
             return Support(entries, MembershipFunction);
         }
@@ -40,12 +41,12 @@ namespace Zad2.FuzzyLogic
             return (double) Support(entries, function).Count / (double) entries.Count;
         }
 
-        public double DegreeOfFuzziness(List<Entry> entries)
+        public virtual double DegreeOfFuzziness(List<Entry> entries)
         {
             return DegreeOfFuzziness(entries, MembershipFunction);
         }
 
-        public List<double> DegreeOfFuzzinessForAllFunctions(List<Entry> entries)
+        public virtual List<double> DegreeOfFuzzinessForAllFunctions(List<Entry> entries)
         {
             List<double> result = new List<double>();
             foreach (var func in MembershipFunction.GetAllFunctions())
@@ -55,14 +56,19 @@ namespace Zad2.FuzzyLogic
             return result;
         }
 
-        public double Cardinality()
+        public virtual double Cardinality()
         {
             return MembershipFunction.Cardinality();
         }
 
-        public List<FuzzySet> GetAllFuzzySets()
+        public virtual List<FuzzySet> GetAllFuzzySets()
         {
             return new List<FuzzySet> { this };
+        }
+
+        public virtual void SetAllFuzzySets(List<FuzzySet> sets)
+        {
+            
         }
     }
 }

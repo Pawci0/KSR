@@ -7,15 +7,22 @@
         <vm:MainViewModel/>
     </Window.DataContext>
     <Grid>
-        <ComboBox Name="wList" HorizontalAlignment="Left" Margin="120,80,0,0" VerticalAlignment="Top" Width="120" 
+        <ComboBox HorizontalAlignment="Left" Margin="64,80,0,0" VerticalAlignment="Top" Width="120" 
                   ItemsSource="{Binding Path=LinguisticVariables}" SelectedItem="{Binding Path=SelectedQualifier}" DisplayMemberPath="MemberAndName"/>
-        <ComboBox Name="sList" HorizontalAlignment="Left" Margin="320,80,0,0" VerticalAlignment="Top" Width="120"
-                  ItemsSource="{Binding Path=LinguisticVariables}" SelectedItem="{Binding Path=SelectedSummarizer}" DisplayMemberPath="MemberAndName"/>
-        <Label Content="Qualifier" HorizontalAlignment="Left" Margin="61,80,0,0" VerticalAlignment="Top"/>
-        <Label Content="Summarizer" HorizontalAlignment="Left" Margin="241,80,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="264,80,0,0" VerticalAlignment="Top" Width="120"
+                  ItemsSource="{Binding Path=LinguisticVariables}" SelectedItem="{Binding Path=SelectedSummarizer1}" DisplayMemberPath="MemberAndName"/>
+        <ComboBox HorizontalAlignment="Left" Margin="464,80,0,0" VerticalAlignment="Top" Width="120"
+                  ItemsSource="{Binding Path=LinguisticVariables}" SelectedItem="{Binding Path=SelectedSummarizer2}" DisplayMemberPath="MemberAndName"/>
+        <Label Content="Qualifier" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top"/>
+        <Label Content="Summarizer1" HorizontalAlignment="Left" Margin="184,77,0,0" VerticalAlignment="Top"/>
+        <Label Content="Summarizer2" HorizontalAlignment="Left" Margin="384,77,0,0" VerticalAlignment="Top"/>
         <Button Content="Generate" HorizontalAlignment="Left" Margin="120,141,0,0" VerticalAlignment="Top" Width="75" Command="{Binding GenerateCommand}"/>
-        <TextBlock Name="outputBox" HorizontalAlignment="Left" Margin="120,180,0,0" TextWrapping="Wrap" Text="{Binding Output, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="220" Width="515" />
-        <Button Content="Save output" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="210,141,0,0" Command="{Binding SaveCommand}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="120,180,0,0" TextWrapping="Wrap" Text="{Binding Output, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="220" Width="515" />
+        <Button Content="Save output" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="280,141,0,0" Command="{Binding SaveCommand}"/>
+        <Label Content="And/Or" HorizontalAlignment="Left" Margin="584,77,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="634,80,0,0" VerticalAlignment="Top" Width="120"
+                  ItemsSource="{Binding Path=Andor}" SelectedItem="{Binding Path=SelectedFunction}" DisplayMemberPath="Name"/>
+        <Button Content="Generate2" HorizontalAlignment="Left" Margin="200,141,0,0" VerticalAlignment="Top" Width="75" Command="{Binding Generate2Command}"/>
 
     </Grid>
 </Window>

@@ -40,8 +40,6 @@ namespace Zad2
 
         private void Onloaded(object sender, RoutedEventArgs e)
         {
-            double aaaaaaaaa = DegreeOfTruth.CalculateDOT(StaticQuantifiers.lessThan5000, StaticVariables.genderMale, StaticVariables.ageYoung, context.Entry.ToList());
-            aaaaaaaaa++;
         }
     }
 }

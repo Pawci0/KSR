@@ -74,7 +74,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FuzzyLogic\And.cs" />
     <Compile Include="FuzzyLogic\FuzzySet.cs" />
+    <Compile Include="FuzzyLogic\Or.cs" />
     <Compile Include="FuzzyLogic\StaticQuantifiers.cs" />
     <Compile Include="Membership\AndFunction.cs" />
     <Compile Include="Membership\ICompoundMembershipFunction.cs" />
