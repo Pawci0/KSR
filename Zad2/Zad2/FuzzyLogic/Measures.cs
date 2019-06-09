@@ -9,6 +9,7 @@ namespace Zad2.FuzzyLogic
 {
     public class Measures
     {
+        //T1
         public static double DegreeOfTruth(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
         {
             double up = 0;
@@ -23,6 +24,7 @@ namespace Zad2.FuzzyLogic
             return quantificator.MembershipFunction.GetMembership(up / down);
         }
 
+        //T2
         public static double DegreeOfImprecision(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
         {
             double ret=1;
@@ -35,6 +37,7 @@ namespace Zad2.FuzzyLogic
             return 1 - ret;
         }
 
+        //T3
         public static double DegreeOfCovering(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
         {
             double up = 0;
@@ -55,6 +58,42 @@ namespace Zad2.FuzzyLogic
             }
 
             return up / down;
+        }
+
+        //T4
+        public static double DegreeOfAppropriateness(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
+        {
+            //todo
+            throw new NotImplementedException();
+        }
+
+        //T5
+        public static double LengthOfSummary(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
+        {
+            var nOfSummarizers = summarizer.MembershipFunction.GetAllFunctions().Count;
+            return 2 * Math.Pow(1.0 / 2.0, nOfSummarizers);
+        }
+
+        //T6
+        public static double DegreeOfQuantifierImprecision(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
+        {
+            double ret = quantificator.FuzzySet.Support(entries).Count;
+            if (!quantificator.Absolute)
+            {
+                ret /= (double) entries.Count;
+            }
+            return ret;
+        }
+
+        //T7
+        public static double DegreeOfQuantifierCardinality(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
+        {
+            double ret = quantificator.FuzzySet.Cardinality();
+            if (!quantificator.Absolute)
+            {
+                ret /= (double)entries.Count;
+            }
+            return ret;
         }
     }
 }

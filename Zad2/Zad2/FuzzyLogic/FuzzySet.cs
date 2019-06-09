@@ -54,5 +54,10 @@ namespace Zad2.FuzzyLogic
             }
             return result;
         }
+
+        public double Cardinality()
+        {
+            return MembershipFunction.Cardinality();
+        }
     }
 }
