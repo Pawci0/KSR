@@ -34,5 +34,27 @@ namespace Zad2.FuzzyLogic
             ret = Math.Pow(ret, 1 / xd.Count);
             return 1 - ret;
         }
+
+        public static double DegreeOfCovering(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
+        {
+            double up = 0;
+            double down = 0;
+
+            foreach (var entry in entries)
+            {
+                var qualVal = qualifier.GetMemebership(entry);
+                var sumVal = summarizer.GetMemebership(entry);
+                if (qualVal > 0)
+                {
+                    down++;
+                    if(sumVal > 0)
+                    {
+                        up++;
+                    }
+                }
+            }
+
+            return up / down;
+        }
     }
 }
