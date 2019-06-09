@@ -26,5 +26,10 @@ namespace Zad2.Membership
         {
             return Function1.GetAllFunctions().Concat(Function2.GetAllFunctions()).ToList();
         }
+
+        public double Cardinality()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

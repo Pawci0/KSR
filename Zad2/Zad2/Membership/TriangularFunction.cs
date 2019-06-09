@@ -37,5 +37,10 @@ namespace Zad2.Membership
         {
             return new List<IMembershipFunction> { this };
         }
+
+        public double Cardinality()
+        {
+            return (c - a) / 2;
+        }
     }
 }

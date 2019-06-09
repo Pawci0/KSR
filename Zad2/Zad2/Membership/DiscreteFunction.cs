@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Zad2.Membership
 {
@@ -10,6 +11,11 @@ namespace Zad2.Membership
         }
 
         public List<double> Parameters { get; set; }
+
+        public double Cardinality()
+        {
+            return Parameters.Sum();
+        }
 
         public List<IMembershipFunction> GetAllFunctions()
         {
