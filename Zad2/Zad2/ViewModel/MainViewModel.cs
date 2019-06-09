@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace Zad2.ViewModel
         public LinguisticVariable SelectedSummarizer { get; set; }
         private ObservableCollection<LinguisticVariable> quantifiers;
         public ICommand GenerateCommand { get; set; }
+        public ICommand SaveCommand { get; set; }
         public List<KeyValuePair<double, string>> Summaries { get; private set; }
         public string Output { get; private set; }
 
@@ -33,6 +35,7 @@ namespace Zad2.ViewModel
             LinguisticVariables = StaticVariables.getAllVariables();
             quantifiers = StaticQuantifiers.getAllQuantifiers();
             GenerateCommand = new RelayCommand(o => Generate());
+            SaveCommand = new RelayCommand(o => Save());
         }
 
         private void Generate()
@@ -51,6 +54,16 @@ namespace Zad2.ViewModel
                 temp += summary.Value + " [" + summary.Key + "]\n";
             }
             Output = temp;
+        }
+
+        private void Save()
+        {
+            string path = "output.txt";
+            
+            if (!File.Exists(path))
+            {
+                File.WriteAllText(path, Output);
+            }
         }
     }
 }
