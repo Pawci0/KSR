@@ -7,9 +7,9 @@ using Zad2.DataModel;
 
 namespace Zad2.FuzzyLogic
 {
-    public class DegreeOfTruth
+    public class Measures
     {
-        public static double CalculateDOT(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
+        public static double DegreeOfTruth(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
         {
             double up = 0;
             double down = 0;
@@ -21,6 +21,18 @@ namespace Zad2.FuzzyLogic
             if(quantificator.Absolute)
                 return quantificator.MembershipFunction.GetMembership(up);
             return quantificator.MembershipFunction.GetMembership(up / down);
+        }
+
+        public static double DegreeOfImprecision(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
+        {
+            double ret=1;
+            var xd = summarizer.FuzzySet.DegreeOfFuzzinessForAllFunctions(entries);
+            foreach (var DoF in xd)
+            {
+                ret *= DoF;
+            }
+            ret = Math.Pow(ret, 1 / xd.Count);
+            return 1 - ret;
         }
     }
 }

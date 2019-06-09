@@ -55,7 +55,7 @@ namespace Zad2.ViewModel
             foreach (LinguisticVariable quantifier in quantifiers)
             {
                 Summaries.Add(new KeyValuePair<double, string>(
-                    DegreeOfTruth.CalculateDOT(quantifier, SelectedQualifier, SelectedSummarizer, dataContext.Entry.ToList()),
+                    Measures.DegreeOfTruth(quantifier, SelectedQualifier, SelectedSummarizer, dataContext.Entry.ToList()),
                     quantifier.Name + " people being/having " + SelectedQualifier.MemberAndName + " are/have " + SelectedSummarizer.MemberAndName));
             }
             Summaries.Sort((x, y) => y.Key.CompareTo(x.Key));

@@ -76,6 +76,9 @@
     </ApplicationDefinition>
     <Compile Include="FuzzyLogic\FuzzySet.cs" />
     <Compile Include="FuzzyLogic\StaticQuantifiers.cs" />
+    <Compile Include="Membership\AndFunction.cs" />
+    <Compile Include="Membership\ICompoundMembershipFunction.cs" />
+    <Compile Include="Membership\OrFunction.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Page Include="MainWindow.xaml">
@@ -93,7 +96,7 @@
     <Compile Include="DataModel\Enums\Sex.cs" />
     <Compile Include="DataModel\Enums\Tested.cs" />
     <Compile Include="DataModel\LiftingDataContext.cs" />
-    <Compile Include="FuzzyLogic\DegreeOfTruth.cs" />
+    <Compile Include="FuzzyLogic\Measures.cs" />
     <Compile Include="FuzzyLogic\LinguisticVariable.cs" />
     <Compile Include="FuzzyLogic\StaticVariables.cs" />
     <Compile Include="MainWindow.xaml.cs">
