@@ -6,5 +6,6 @@ namespace Zad2.Membership
     {
         double GetMembership(double x);
         List<IMembershipFunction> GetAllFunctions();
+        double Cardinality();
     }
 }
