@@ -16,5 +16,6 @@ namespace Zad2.FuzzyLogic
         public string MemberToExtract { get; set; }
         public Func<Entry, double> Extractor { get; set; }
         public bool Absolute { get; set; }
+        public string MemberAndName { get => MemberToExtract + ": " + Name; }
     }
 }

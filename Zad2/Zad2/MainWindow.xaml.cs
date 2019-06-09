@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Zad2.DataModel;
 using Zad2.FuzzyLogic;
+using Zad2.ViewModel;
 
 namespace Zad2
 {
@@ -24,18 +25,23 @@ namespace Zad2
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly MainViewModel viewModel;
+        private LiftingDataContext context;
         public MainWindow()
         {
             InitializeComponent();
+            var connection = new SqliteConnection(
+            @"Data Source=D:\Studia\ksr\KSR\Zad2\db");
+            context = new LiftingDataContext(connection);
+            viewModel = new MainViewModel(context);
+            DataContext = viewModel;
             Loaded += Onloaded;
         }
 
         private void Onloaded(object sender, RoutedEventArgs e)
         {
-            var connection = new SqliteConnection(
-            @"Data Source=D:\Studia\ksr\KSR\Zad2\db");
-            var context = new LiftingDataContext(connection);
-            double aaaaaaaaa = DegreeOfTruth.CalculateDOT(StaticVariables.lessThan5000, StaticVariables.genderMale, StaticVariables.ageYoung, context.Entry.ToList());
+            
+            double aaaaaaaaa = DegreeOfTruth.CalculateDOT(StaticQuantifiers.lessThan5000, StaticVariables.genderMale, StaticVariables.ageYoung, context.Entry.ToList());
             aaaaaaaaa++;
         }
     }
