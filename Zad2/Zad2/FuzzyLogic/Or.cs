@@ -6,10 +6,10 @@ using Zad2.Membership;
 
 namespace Zad2.FuzzyLogic
 {
-    class Or : FuzzySet
+    public class Or : FuzzySet
     {
-        FuzzySet fuzzySet1;
-        FuzzySet fuzzySet2;
+        public FuzzySet fuzzySet1;
+        public FuzzySet fuzzySet2;
 
         public new double GetMembership(Entry entry)
         {
