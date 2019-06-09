@@ -12,9 +12,14 @@ namespace Zad2.FuzzyLogic
     {
         public string Name { get; set; }
         public IMembershipFunction MembershipFunction { get; set; }
-        public List<double> MembershipFunctionParameters { get; set; }
         public string MemberToExtract { get; set; }
         public Func<Entry, double> Extractor { get; set; }
         public bool Absolute { get; set; }
+        public FuzzySet FuzzySet { get; set; }
+
+        public double GetMemebership(Entry entry)
+        {
+            return FuzzySet.GetMembership(entry);
+        }
     }
 }

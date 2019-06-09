@@ -15,7 +15,7 @@ namespace Zad2.FuzzyLogic
             double down = 0;
             foreach(Entry e in entries)
             {
-                up += Math.Min(qualifier.Extractor(e), summarizer.Extractor(e));
+                up += Math.Min(qualifier.GetMemebership(e), summarizer.GetMemebership(e));
                 down += qualifier.Extractor(e);
             }
             if(quantificator.Absolute)
