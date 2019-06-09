@@ -21,5 +21,6 @@ namespace Zad2.FuzzyLogic
         {
             return FuzzySet.GetMembership(entry);
         }
+        public string MemberAndName { get => MemberToExtract + ": " + Name; }
     }
 }
