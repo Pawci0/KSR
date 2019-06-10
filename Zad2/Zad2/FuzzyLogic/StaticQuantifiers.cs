@@ -12,10 +12,10 @@ namespace Zad2.FuzzyLogic
     {
         #region Quantizers
         //relative
-        public static LinguisticVariable few = new LinguisticVariable
+        public static LinguisticVariable no = new LinguisticVariable
         {
-            Name = "Few",
-            MembershipFunction = new TriangularFunction(new List<double> { 0, 0.15, 0.3 }),
+            Name = "No",
+            MembershipFunction = new TriangularFunction(new List<double> { 0, 0, 0.15 }),
             Absolute = false
         };
         public static LinguisticVariable lessThanThird = new LinguisticVariable
@@ -28,6 +28,12 @@ namespace Zad2.FuzzyLogic
         {
             Name = "Around half",
             MembershipFunction = new TriangularFunction(new List<double> { 0.4, 0.5, 0.6 }),
+            Absolute = false
+        };
+        public static LinguisticVariable aroundThreeQuaters = new LinguisticVariable
+        {
+            Name = "Around three quaters",
+            MembershipFunction = new TriangularFunction(new List<double> { 0.5, 0.6, 0.7 }),
             Absolute = false
         };
         public static LinguisticVariable majority = new LinguisticVariable
@@ -44,37 +50,47 @@ namespace Zad2.FuzzyLogic
         };
 
         //absolute
-        public static LinguisticVariable around3000 = new LinguisticVariable
-        {
-            Name = "Around 3000",
-            MembershipFunction = new TriangularFunction(new List<double> { 2500, 3000, 3500 }),
-            Absolute = true
-        };
         public static LinguisticVariable lessThan5000 = new LinguisticVariable
         {
             Name = "Less than 5000",
-            MembershipFunction = new TriangularFunction(new List<double> { 0, 0, 5000 }),
+            MembershipFunction = new TrapezoidFunction(new List<double> { 0, 0, 4990, 5000 }),
             Absolute = true
         };
-        public static LinguisticVariable moreThan10000 = new LinguisticVariable
+        public static LinguisticVariable around15000 = new LinguisticVariable
         {
-            Name = "Much more than 10000",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 10000, 15000, 45000, 45000 }),
+            Name = "Around 15000",
+            MembershipFunction = new TriangularFunction(new List<double> { 14000, 15000, 16000 }),
             Absolute = true
         };
+        public static LinguisticVariable around25000 = new LinguisticVariable
+        {
+            Name = "Around 25000",
+            MembershipFunction = new TriangularFunction(new List<double> { 24000, 25000, 26000 }),
+            Absolute = true
+        };
+        public static LinguisticVariable moreThan35000 = new LinguisticVariable
+        {
+            Name = "More than 35000",
+            MembershipFunction = new TrapezoidFunction(new List<double> { 35000, 35010, 41000, 41000 }),
+            Absolute = true
+        };
+
+
         #endregion
         public static ObservableCollection<LinguisticVariable> getAllQuantifiers()
         {
             return new ObservableCollection<LinguisticVariable>
             {
-                few,
+                no,
                 lessThanThird,
                 aroundHalf,
+                aroundThreeQuaters,
                 majority,
                 almostAll,
-                around3000,
                 lessThan5000,
-                moreThan10000
+                around15000,
+                around25000,
+                moreThan35000
             };
         }
     }
