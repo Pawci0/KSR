@@ -9,24 +9,24 @@ namespace Zad2.FuzzyLogic
 {
     public class Measures
     {
-        public static double AverageMeasure(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
+        public static double WeightedMeasure(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
         {
             List<double> measureValues = new List<double>
             {
-                DegreeOfTruth(quantificator, qualifier, summarizer, entries),
-                DegreeOfImprecision(quantificator, qualifier, summarizer, entries),
-                DegreeOfCovering(quantificator, qualifier, summarizer, entries),
-                DegreeOfAppropriateness(quantificator, qualifier, summarizer, entries),
-                LengthOfSummary(quantificator, qualifier, summarizer, entries),
-                DegreeOfQuantifierImprecision(quantificator, qualifier, summarizer, entries),
-                DegreeOfQuantifierCardinality(quantificator, qualifier, summarizer, entries),
-                DegreeOfSummarizerCardinality(quantificator, qualifier, summarizer, entries),
-                DegreeOfQualifierImprecision(quantificator, qualifier, summarizer, entries),
-                DegreeOfQualifierCardinality(quantificator, qualifier, summarizer, entries),
-                LengthOfQualifier(quantificator, qualifier, summarizer, entries)
+                (8.0 / 11) * DegreeOfTruth(quantificator, qualifier, summarizer, entries),
+                (3.0 / 110) * DegreeOfImprecision(quantificator, qualifier, summarizer, entries),
+                (3.0 / 110) * DegreeOfCovering(quantificator, qualifier, summarizer, entries),
+                (3.0 / 110) * DegreeOfAppropriateness(quantificator, qualifier, summarizer, entries),
+                (3.0 / 110) * LengthOfSummary(quantificator, qualifier, summarizer, entries),
+                (3.0 / 110) * DegreeOfQuantifierImprecision(quantificator, qualifier, summarizer, entries),
+                (3.0 / 110) * DegreeOfQuantifierCardinality(quantificator, qualifier, summarizer, entries),
+                (3.0 / 110) * DegreeOfSummarizerCardinality(quantificator, qualifier, summarizer, entries),
+                (3.0 / 110) * DegreeOfQualifierImprecision(quantificator, qualifier, summarizer, entries),
+                (3.0 / 110) * DegreeOfQualifierCardinality(quantificator, qualifier, summarizer, entries),
+                (3.0 / 110) * LengthOfQualifier(quantificator, qualifier, summarizer, entries)
             };
 
-            return measureValues.Average();
+            return measureValues.Sum();
         }
 
         //T1
