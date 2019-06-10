@@ -74,7 +74,7 @@ namespace Zad2.ViewModel
             foreach (LinguisticVariable quantifier in quantifiers)
             {
                 Summaries.Add(new KeyValuePair<double, string>(
-                    Measures.AverageMeasure(quantifier, SelectedQualifier, SelectedSummarizer1, dataContext.Entry.ToList()),
+                    Measures.WeightedMeasure(quantifier, SelectedQualifier, SelectedSummarizer1, dataContext.Entry.ToList()),
                     quantifier.Name + " people being/having " + SelectedQualifier.MemberAndName + " are/have " + SelectedSummarizer1.MemberAndName));
             }
             Summaries.Sort((x, y) => y.Key.CompareTo(x.Key));
@@ -93,7 +93,7 @@ namespace Zad2.ViewModel
             foreach (LinguisticVariable quantifier in quantifiers)
             {
                 Summaries.Add(new KeyValuePair<double, string>(
-                    Measures.AverageMeasure(quantifier, SelectedQualifier, SelectedFunction, dataContext.Entry.ToList()),
+                    Measures.WeightedMeasure(quantifier, SelectedQualifier, SelectedFunction, dataContext.Entry.ToList()),
                     quantifier.Name + " people being/having " + SelectedQualifier.MemberAndName + " are/have " + 
                     SelectedSummarizer1.MemberAndName + SelectedFunction.Name + SelectedSummarizer2.MemberAndName));
             }
