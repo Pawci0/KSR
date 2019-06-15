@@ -112,7 +112,7 @@ namespace Zad2.ViewModel
             string res = "";
             foreach (var summary in Summaries)
             {
-                LogTValues(summary.Value.summary, summary.Value.tValues);
+                LogTValues(summary);
                 int i = 1;
                 res += summary.Value.summary + " [" + Math.Round(summary.Key, 3) + "]\n";
                 res += "[";
@@ -126,10 +126,10 @@ namespace Zad2.ViewModel
             return res;
         }
 
-        private void LogTValues(string summary, List<double> tValues)
+        private void LogTValues(KeyValuePair<double, (string summary, List<double> tValues)> summary)
         {
-            string log = summary + ":\n";
-            tValues.ForEach((v) => log += Math.Round(v, 3) + ", ");
+            string log = summary.Value.summary + "; " + Math.Round(summary.Key, 3) + "; ";
+            summary.Value.tValues.ForEach((v) => log += Math.Round(v, 3) + "; ");
             System.Diagnostics.Trace.WriteLine(log.Substring(0, log.Length - 2));
         }
 
