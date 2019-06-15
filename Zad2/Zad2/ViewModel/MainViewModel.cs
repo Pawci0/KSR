@@ -73,42 +73,49 @@ namespace Zad2.ViewModel
             Summaries = new List<KeyValuePair<double, (string, List<double>)>>();
             foreach (LinguisticVariable quantifier in quantifiers)
             {
-                List<double> measureValues;
-                var weightedMeasure = Measures.WeightedMeasure(quantifier, SelectedQualifier, SelectedSummarizer1, dataContext.Entry.ToList(), out measureValues);
                 string summary = quantifier.Name + " people being/having " + SelectedQualifier.MemberAndName + " are/have " + SelectedSummarizer1.MemberAndName;
-                var pair = new KeyValuePair<double, (string, List<double>)>(
-                    weightedMeasure,
-                    (summary, measureValues)
-                );
+                var pair = CreateSummaryPair(quantifier, SelectedSummarizer1, summary);
                 Summaries.Add(pair);
             }
             Summaries.Sort((x, y) => y.Key.CompareTo(x.Key));
-            string temp = "";
-            foreach(var summary in Summaries)
-            {
-                temp += summary.Value.summary + " [" + summary.Key + "]\n";
-            }
-            Output = temp;
+            Output = GenerateSummarySentences();
+        }
+
+        private KeyValuePair<double, (string, List<double>)> CreateSummaryPair(LinguisticVariable quantifier, LinguisticVariable summarizer, string summary)
+        {
+            List<double> measureValues;
+            var weightedMeasure = Measures.WeightedMeasure(quantifier, SelectedQualifier, summarizer, dataContext.Entry.ToList(), out measureValues);
+            var pair = new KeyValuePair<double, (string, List<double>)>(
+                weightedMeasure,
+                (summary, measureValues)
+            );
+            return pair;
         }
 
         private void Generate2()
         {
-            //Summaries = new List<KeyValuePair<double, string>>();
-            //SelectedFunction.FuzzySet.SetAllFuzzySets(new List<FuzzySet> { SelectedSummarizer1.FuzzySet, SelectedSummarizer2.FuzzySet });
-            //foreach (LinguisticVariable quantifier in quantifiers)
-            //{
-            //    Summaries.Add(new KeyValuePair<double, string>(
-            //        Measures.WeightedMeasure(quantifier, SelectedQualifier, SelectedFunction, dataContext.Entry.ToList()),
-            //        quantifier.Name + " people being/having " + SelectedQualifier.MemberAndName + " are/have " + 
-            //        SelectedSummarizer1.MemberAndName + SelectedFunction.Name + SelectedSummarizer2.MemberAndName));
-            //}
-            //Summaries.Sort((x, y) => y.Key.CompareTo(x.Key));
-            //string temp = "";
-            //foreach (KeyValuePair<double, string> summary in Summaries)
-            //{
-            //    temp += summary.Value + " [" + summary.Key + "]\n";
-            //}
-            //Output = temp;
+            Summaries = new List<KeyValuePair<double, (string, List<double>)>>();
+            SelectedFunction.FuzzySet.SetAllFuzzySets(new List<FuzzySet> { SelectedSummarizer1.FuzzySet, SelectedSummarizer2.FuzzySet });
+            foreach (LinguisticVariable quantifier in quantifiers)
+            {
+                string summary = quantifier.Name + " people being/having " + SelectedQualifier.MemberAndName + " are/have " +
+                    SelectedSummarizer1.MemberAndName + SelectedFunction.Name + SelectedSummarizer2.MemberAndName;
+                var pair = CreateSummaryPair(quantifier, SelectedFunction, summary);
+                Summaries.Add(pair);
+            }
+            Summaries.Sort((x, y) => y.Key.CompareTo(x.Key));
+            Output = GenerateSummarySentences();
+        }
+
+        private string GenerateSummarySentences()
+        {
+            string temp = "";
+            foreach (var summary in Summaries)
+            {
+                temp += summary.Value.summary + " [" + summary.Key + "]\n";
+            }
+
+            return temp;
         }
 
         private void Save()
