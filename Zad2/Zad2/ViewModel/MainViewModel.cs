@@ -73,7 +73,7 @@ namespace Zad2.ViewModel
             Summaries = new List<KeyValuePair<double, (string, List<double>)>>();
             foreach (LinguisticVariable quantifier in quantifiers)
             {
-                string summary = quantifier.Name + " people being/having " + SelectedQualifier.MemberAndName + " are/have " + SelectedSummarizer1.MemberAndName;
+                string summary = quantifier.Name + " of people being/having " + SelectedQualifier.MemberAndName + " are/have " + SelectedSummarizer1.MemberAndName;
                 var pair = CreateSummaryPair(quantifier, SelectedSummarizer1, summary);
                 Summaries.Add(pair);
             }
@@ -98,7 +98,7 @@ namespace Zad2.ViewModel
             SelectedFunction.FuzzySet.SetAllFuzzySets(new List<FuzzySet> { SelectedSummarizer1.FuzzySet, SelectedSummarizer2.FuzzySet });
             foreach (LinguisticVariable quantifier in quantifiers)
             {
-                string summary = quantifier.Name + " people being/having " + SelectedQualifier.MemberAndName + " are/have " +
+                string summary = quantifier.Name + " of people being/having " + SelectedQualifier.MemberAndName + " are/have " +
                     SelectedSummarizer1.MemberAndName + SelectedFunction.Name + SelectedSummarizer2.MemberAndName;
                 var pair = CreateSummaryPair(quantifier, SelectedFunction, summary);
                 Summaries.Add(pair);
