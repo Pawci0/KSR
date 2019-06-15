@@ -9,7 +9,7 @@ namespace Zad2.FuzzyLogic
 {
     public class Measures
     {
-        public static double WeightedMeasure(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
+        public static double WeightedMeasure(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries, out List<double> values)
         {
             List<double> measureValues = new List<double>
             {
@@ -25,7 +25,7 @@ namespace Zad2.FuzzyLogic
                 (3.0 / 110) * DegreeOfQualifierCardinality(quantificator, qualifier, summarizer, entries),
                 (3.0 / 110) * LengthOfQualifier(quantificator, qualifier, summarizer, entries)
             };
-
+            values = measureValues;
             return measureValues.Sum();
         }
 
@@ -103,8 +103,7 @@ namespace Zad2.FuzzyLogic
         //T6
         public static double DegreeOfQuantifierImprecision(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
         {
-            var ret = (quantificator.MembershipFunction.Parameters.Last()
-                       - quantificator.MembershipFunction.Parameters.First());
+            var ret = quantificator.MembershipFunction.Cardinality();
 
             if (quantificator.Absolute)
             {

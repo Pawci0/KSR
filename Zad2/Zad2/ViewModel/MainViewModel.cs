@@ -31,7 +31,7 @@ namespace Zad2.ViewModel
         public ICommand GenerateCommand { get; set; }
         public ICommand Generate2Command { get; set; }
         public ICommand SaveCommand { get; set; }
-        public List<KeyValuePair<double, string>> Summaries { get; private set; }
+        public List<KeyValuePair<double, (string summary, List<double> tValues)>> Summaries { get; private set; }
         public string Output { get => output;
             private set
             {
@@ -70,40 +70,45 @@ namespace Zad2.ViewModel
 
         private void Generate()
         {
-            Summaries = new List<KeyValuePair<double, string>>();
+            Summaries = new List<KeyValuePair<double, (string, List<double>)>>();
             foreach (LinguisticVariable quantifier in quantifiers)
             {
-                Summaries.Add(new KeyValuePair<double, string>(
-                    Measures.WeightedMeasure(quantifier, SelectedQualifier, SelectedSummarizer1, dataContext.Entry.ToList()),
-                    quantifier.Name + " people being/having " + SelectedQualifier.MemberAndName + " are/have " + SelectedSummarizer1.MemberAndName));
+                List<double> measureValues;
+                var weightedMeasure = Measures.WeightedMeasure(quantifier, SelectedQualifier, SelectedSummarizer1, dataContext.Entry.ToList(), out measureValues);
+                string summary = quantifier.Name + " people being/having " + SelectedQualifier.MemberAndName + " are/have " + SelectedSummarizer1.MemberAndName;
+                var pair = new KeyValuePair<double, (string, List<double>)>(
+                    weightedMeasure,
+                    (summary, measureValues)
+                );
+                Summaries.Add(pair);
             }
             Summaries.Sort((x, y) => y.Key.CompareTo(x.Key));
             string temp = "";
-            foreach(KeyValuePair<double, string> summary in Summaries)
+            foreach(var summary in Summaries)
             {
-                temp += summary.Value + " [" + summary.Key + "]\n";
+                temp += summary.Value.summary + " [" + summary.Key + "]\n";
             }
             Output = temp;
         }
 
         private void Generate2()
         {
-            Summaries = new List<KeyValuePair<double, string>>();
-            SelectedFunction.FuzzySet.SetAllFuzzySets(new List<FuzzySet> { SelectedSummarizer1.FuzzySet, SelectedSummarizer2.FuzzySet });
-            foreach (LinguisticVariable quantifier in quantifiers)
-            {
-                Summaries.Add(new KeyValuePair<double, string>(
-                    Measures.WeightedMeasure(quantifier, SelectedQualifier, SelectedFunction, dataContext.Entry.ToList()),
-                    quantifier.Name + " people being/having " + SelectedQualifier.MemberAndName + " are/have " + 
-                    SelectedSummarizer1.MemberAndName + SelectedFunction.Name + SelectedSummarizer2.MemberAndName));
-            }
-            Summaries.Sort((x, y) => y.Key.CompareTo(x.Key));
-            string temp = "";
-            foreach (KeyValuePair<double, string> summary in Summaries)
-            {
-                temp += summary.Value + " [" + summary.Key + "]\n";
-            }
-            Output = temp;
+            //Summaries = new List<KeyValuePair<double, string>>();
+            //SelectedFunction.FuzzySet.SetAllFuzzySets(new List<FuzzySet> { SelectedSummarizer1.FuzzySet, SelectedSummarizer2.FuzzySet });
+            //foreach (LinguisticVariable quantifier in quantifiers)
+            //{
+            //    Summaries.Add(new KeyValuePair<double, string>(
+            //        Measures.WeightedMeasure(quantifier, SelectedQualifier, SelectedFunction, dataContext.Entry.ToList()),
+            //        quantifier.Name + " people being/having " + SelectedQualifier.MemberAndName + " are/have " + 
+            //        SelectedSummarizer1.MemberAndName + SelectedFunction.Name + SelectedSummarizer2.MemberAndName));
+            //}
+            //Summaries.Sort((x, y) => y.Key.CompareTo(x.Key));
+            //string temp = "";
+            //foreach (KeyValuePair<double, string> summary in Summaries)
+            //{
+            //    temp += summary.Value + " [" + summary.Key + "]\n";
+            //}
+            //Output = temp;
         }
 
         private void Save()
