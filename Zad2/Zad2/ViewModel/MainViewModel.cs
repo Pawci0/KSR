@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -141,12 +142,13 @@ namespace Zad2.ViewModel
 
         private void Save()
         {
-            string path = "output.txt";
-            
-            if (!File.Exists(path))
-            {
-                File.WriteAllText(path, Output);
-            }
+            Task.Run(() => {
+                string summary = Output;
+                SaveFileDialog dialog = new SaveFileDialog();
+                dialog.ShowDialog();
+                string path = dialog.FileName;
+                File.WriteAllText(path, summary);
+            });
         }
 
         protected void OnPropertyChanged(string name)
