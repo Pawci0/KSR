@@ -98,12 +98,12 @@ namespace Zad2.FuzzyLogic
         //T4
         public static double DegreeOfAppropriateness(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
         {
-            double ret = 0;
+            double ret = 1;
             var sets = summarizer.FuzzySet.GetAllFuzzySets();
             double t3 = DegreeOfCovering(quantificator, qualifier, summarizer, entries);
             foreach (var set in sets)
             {
-                ret += (set.Support(entries).Count() / entries.Count()) - t3;
+                ret *= (set.Support(entries).Count() / entries.Count()) - t3;
             }
             return Math.Abs(ret);
         }
