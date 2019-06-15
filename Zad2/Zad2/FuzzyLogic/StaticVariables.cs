@@ -555,6 +555,18 @@ namespace Zad2.FuzzyLogic
         };
         #endregion
 
+        public static LinguisticVariable none = new LinguisticVariable
+        {
+            Name = "-",
+            MemberToExtract = "-",
+            Extractor = (e) => new ConstantFunction().GetMembership(0.0),
+            FuzzySet = new FuzzySet
+            {
+                MembershipFunction = new ConstantFunction(),
+                FieldExtractor = (e) => 0.0
+            }
+        };
+
         public static ObservableCollection<LinguisticVariable> getAllVariables()
         {
             return new ObservableCollection<LinguisticVariable>
@@ -571,7 +583,7 @@ namespace Zad2.FuzzyLogic
                 glossbrennerLow, glossbrennerRegular, glossbrennerHigh, glossbrennerVeryHigh,
                 ipfLow, ipfRegular, ipfHigh, ipfVeryHigh,
                 genderMale, genderFemale,
-                testedNo, testedYes
+                testedNo, testedYes, none
             };
         }
     }

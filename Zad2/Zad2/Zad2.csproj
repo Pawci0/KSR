@@ -78,6 +78,7 @@
     <Compile Include="FuzzyLogic\FuzzySet.cs" />
     <Compile Include="FuzzyLogic\Or.cs" />
     <Compile Include="FuzzyLogic\StaticQuantifiers.cs" />
+    <Compile Include="Membership\ConstantFunction.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Page Include="MainWindow.xaml">
