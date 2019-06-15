@@ -73,12 +73,18 @@ namespace Zad2.ViewModel
             Summaries = new List<KeyValuePair<double, (string, List<double>)>>();
             foreach (LinguisticVariable quantifier in quantifiers)
             {
-                string summary = quantifier.Name + " of people being/having " + SelectedQualifier.MemberAndName + " are/have " + SelectedSummarizer1.MemberAndName;
+                string w = GetQualifierString(SelectedQualifier.MemberAndName);
+                string summary = quantifier.Name + w + " are/have " + SelectedSummarizer1.MemberAndName;
                 var pair = CreateSummaryPair(quantifier, SelectedSummarizer1, summary);
                 Summaries.Add(pair);
             }
             Summaries.Sort((x, y) => y.Key.CompareTo(x.Key));
             Output = GenerateSummarySentences();
+        }
+
+        private string GetQualifierString(string name)
+        {
+            return name.Equals("--: --") ? "" : " of people being/having " + name;
         }
 
         private KeyValuePair<double, (string, List<double>)> CreateSummaryPair(LinguisticVariable quantifier, LinguisticVariable summarizer, string summary)
