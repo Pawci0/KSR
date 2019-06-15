@@ -557,8 +557,8 @@ namespace Zad2.FuzzyLogic
 
         public static LinguisticVariable none = new LinguisticVariable
         {
-            Name = "-",
-            MemberToExtract = "-",
+            Name = "--",
+            MemberToExtract = "--",
             Extractor = (e) => new ConstantFunction().GetMembership(0.0),
             FuzzySet = new FuzzySet
             {
