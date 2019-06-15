@@ -15,13 +15,31 @@ namespace Zad2.FuzzyLogic
         public static LinguisticVariable no = new LinguisticVariable
         {
             Name = "No",
-            MembershipFunction = new TriangularFunction(new List<double> { 0, 0, 0.15 }),
+            MembershipFunction = new TriangularFunction(new List<double> { 0, 0, 0.16 }),
+            Absolute = false
+        };
+        public static LinguisticVariable around20Percent = new LinguisticVariable
+        {
+            Name = "around 20%",
+            MembershipFunction = new TriangularFunction(new List<double> { 0.14, 0.2, 0.26 }),
+            Absolute = false
+        };
+        public static LinguisticVariable aroundOneThird = new LinguisticVariable
+        {
+            Name = "around one third",
+            MembershipFunction = new TriangularFunction(new List<double> { 0.25, 0.33, 0.41 }),
             Absolute = false
         };
         public static LinguisticVariable lessThanThird = new LinguisticVariable
         {
             Name = "Less than a third",
-            MembershipFunction = new TrapezoidFunction(new List<double> { 0, 0, 0.3, 0.35 }),
+            MembershipFunction = new TrapezoidFunction(new List<double> { 0, 0, 0.3, 0.36 }),
+            Absolute = false
+        };
+        public static LinguisticVariable around40Percent = new LinguisticVariable
+        {
+            Name = "around 40%",
+            MembershipFunction = new TriangularFunction(new List<double> { 0.34, 0.4, 0.46}),
             Absolute = false
         };
         public static LinguisticVariable aroundHalf = new LinguisticVariable
@@ -82,6 +100,9 @@ namespace Zad2.FuzzyLogic
             return new ObservableCollection<LinguisticVariable>
             {
                 no,
+                around20Percent,
+                aroundOneThird,
+                around40Percent,
                 lessThanThird,
                 aroundHalf,
                 aroundThreeQuaters,
