@@ -35,16 +35,6 @@ namespace Zad2
             context = new LiftingDataContext(connection);
             viewModel = new MainViewModel(context);
             DataContext = viewModel;
-            Loaded += Onloaded;
-        }
-
-        private void Onloaded(object sender, RoutedEventArgs e)
-        {
-            double aaaaaaaaa = Measures.LengthOfQualifier(StaticQuantifiers.lessThan5000, 
-                                                                    StaticVariables.genderMale, 
-                                                                    StaticVariables.ageYoung, 
-                                                                    context.Entry.ToList());
-
         }
     }
 }
