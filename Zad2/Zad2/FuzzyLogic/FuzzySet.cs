@@ -46,16 +46,6 @@ namespace Zad2.FuzzyLogic
             return DegreeOfFuzziness(entries, MembershipFunction);
         }
 
-        public virtual List<double> DegreeOfFuzzinessForAllFunctions(List<Entry> entries)
-        {
-            List<double> result = new List<double>();
-            foreach (var func in MembershipFunction.GetAllFunctions())
-            {
-                result.Add(DegreeOfFuzziness(entries, func));
-            }
-            return result;
-        }
-
         public virtual double Cardinality()
         {
             return MembershipFunction.Cardinality();
