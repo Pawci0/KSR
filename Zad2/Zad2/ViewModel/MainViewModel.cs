@@ -109,13 +109,28 @@ namespace Zad2.ViewModel
 
         private string GenerateSummarySentences()
         {
-            string temp = "";
+            string res = "";
             foreach (var summary in Summaries)
             {
-                temp += summary.Value.summary + " [" + summary.Key + "]\n";
+                LogTValues(summary.Value.summary, summary.Value.tValues);
+                int i = 1;
+                res += summary.Value.summary + " [" + Math.Round(summary.Key, 3) + "]\n";
+                res += "[";
+                summary.Value.tValues.ForEach((v) => {
+                    res += "T" + i++ + "=" + Math.Round(v, 3) + "; ";
+                });
+                res = res.Substring(0, res.Length - 2);
+                res += "]\n";
             }
 
-            return temp;
+            return res;
+        }
+
+        private void LogTValues(string summary, List<double> tValues)
+        {
+            string log = summary + ":\n";
+            tValues.ForEach((v) => log += Math.Round(v, 3) + ", ");
+            System.Diagnostics.Trace.WriteLine(log.Substring(0, log.Length - 2));
         }
 
         private void Save()
