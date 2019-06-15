@@ -31,7 +31,7 @@ namespace Zad2
         {
             InitializeComponent();
             var connection = new SqliteConnection(
-            @"Data Source=D:\Studia\ksr\KSR\Zad2\db");
+            @"Data Source=..\..\..\db");
             context = new LiftingDataContext(connection);
             viewModel = new MainViewModel(context);
             DataContext = viewModel;
@@ -40,6 +40,11 @@ namespace Zad2
 
         private void Onloaded(object sender, RoutedEventArgs e)
         {
+            double aaaaaaaaa = Measures.LengthOfQualifier(StaticQuantifiers.lessThan5000, 
+                                                                    StaticVariables.genderMale, 
+                                                                    StaticVariables.ageYoung, 
+                                                                    context.Entry.ToList());
+
         }
     }
 }
