@@ -24,13 +24,13 @@ namespace Zad2.Membership
 
         public double GetMembership(double x)
         {
-            if (x <= a)
+            if (x < a)
                 return 0.0;
-            else if (a <= x && x <= b)
+            else if (a <= x && x < b)
                 return (x - a) / (b - a);
             else if (b <= x && x <= c)
                 return 1.0;
-            else if (c <= x && x <= d)
+            else if (c < x && x <= d)
                 return (d - x) / (d - c);
             else
                 return 0.0;
