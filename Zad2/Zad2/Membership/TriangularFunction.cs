@@ -25,9 +25,11 @@ namespace Zad2.Membership
         {
             if (x <= a)
                 return 0.0;
-            else if (a <= x && x <= b)
+            else if (a <= x && x < b)
                 return (x - a) / (b - a);
-            else if (b <= x && x <= c)
+            else if (b == x)
+                return 1.0;
+            else if (b < x && x <= c)
                 return (c - x) / (c - b);
             else
                 return 0.0;
