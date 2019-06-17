@@ -11,6 +11,7 @@ namespace Zad2.FuzzyLogic
     {
         public static double WeightedMeasure(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries, out List<double> values)
         {
+            List<double> weightedValues;
             List<double> measureValues = new List<double>()
             {
                 DegreeOfTruth(quantificator, qualifier, summarizer, entries),
@@ -20,26 +21,43 @@ namespace Zad2.FuzzyLogic
                 LengthOfSummary(quantificator, qualifier, summarizer, entries),
                 DegreeOfQuantifierImprecision(quantificator, qualifier, summarizer, entries),
                 DegreeOfQuantifierCardinality(quantificator, qualifier, summarizer, entries),
-                DegreeOfSummarizerCardinality(quantificator, qualifier, summarizer, entries),
-                DegreeOfQualifierImprecision(quantificator, qualifier, summarizer, entries),
-                DegreeOfQualifierCardinality(quantificator, qualifier, summarizer, entries),
-                LengthOfQualifier(quantificator, qualifier, summarizer, entries)
-            };
-
-            List<double> weightedValues = new List<double>
+                DegreeOfSummarizerCardinality(quantificator, qualifier, summarizer, entries)
+        };
+            if(qualifier.Name != "--")
             {
-                (8.0 / 11) *   measureValues[0],
-                (3.0 / 110) *  measureValues[1],
-                (3.0 / 110) *  measureValues[2],
-                (3.0 / 110) *  measureValues[3],
-                (3.0 / 110) *  measureValues[4],
-                (3.0 / 110) *  measureValues[5],
-                (3.0 / 110) *  measureValues[6],
-                (3.0 / 110) *  measureValues[7],
-                (3.0 / 110) *  measureValues[8],
-                (3.0 / 110) *  measureValues[9],
-                (3.0 / 110) *  measureValues[10]
-            };
+                measureValues.Add(DegreeOfQualifierImprecision(quantificator, qualifier, summarizer, entries));
+                measureValues.Add(DegreeOfQualifierCardinality(quantificator, qualifier, summarizer, entries));
+                measureValues.Add(LengthOfQualifier(quantificator, qualifier, summarizer, entries));
+                weightedValues = new List<double>
+                {
+                    (8.0 / 11) *   measureValues[0],
+                    (3.0 / 110) *  measureValues[1],
+                    (3.0 / 110) *  measureValues[2],
+                    (3.0 / 110) *  measureValues[3],
+                    (3.0 / 110) *  measureValues[4],
+                    (3.0 / 110) *  measureValues[5],
+                    (3.0 / 110) *  measureValues[6],
+                    (3.0 / 110) *  measureValues[7],
+                    (3.0 / 110) *  measureValues[8],
+                    (3.0 / 110) *  measureValues[9],
+                    (3.0 / 110) *  measureValues[10]
+                };
+            }
+            else
+            {
+                weightedValues = new List<double>
+                {
+                    (5.0 / 8) *   measureValues[0],
+                    (3.0 / 88) *  measureValues[1],
+                    (3.0 / 88) *  measureValues[2],
+                    (3.0 / 88) *  measureValues[3],
+                    (3.0 / 88) *  measureValues[4],
+                    (3.0 / 88) *  measureValues[5],
+                    (3.0 / 88) *  measureValues[6],
+                    (3.0 / 88) *  measureValues[7],
+                };
+            }
+
             values = measureValues;
             return weightedValues.Sum();
         }
