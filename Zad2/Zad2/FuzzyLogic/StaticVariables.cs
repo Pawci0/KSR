@@ -283,7 +283,7 @@ namespace Zad2.FuzzyLogic
             Extractor = (e) => new TrapezoidFunction(new List<double> { 120, 120, 70, 55 }).GetMembership(e.Place),
             FuzzySet = new FuzzySet
             {
-                MembershipFunction = new TrapezoidFunction(new List<double> { 120, 120, 70, 55 }),
+                MembershipFunction = new TrapezoidFunction(new List<double> { 55, 70, 120, 120 }),
                 FieldExtractor = (e) => e.Place
             }
         };
@@ -294,7 +294,7 @@ namespace Zad2.FuzzyLogic
             Extractor = (e) => new TrapezoidFunction(new List<double> { 50, 40, 25, 15 }).GetMembership(e.Place),
             FuzzySet = new FuzzySet
             {
-                MembershipFunction = new TrapezoidFunction(new List<double> { 50, 40, 25, 15 }),
+                MembershipFunction = new TrapezoidFunction(new List<double> { 15, 25, 40, 50 }),
                 FieldExtractor = (e) => e.Place
             }
         };
@@ -305,7 +305,7 @@ namespace Zad2.FuzzyLogic
             Extractor = (e) => new TrapezoidFunction(new List<double> { 20, 13, 4, 3 }).GetMembership(e.Place),
             FuzzySet = new FuzzySet
             {
-                MembershipFunction = new TrapezoidFunction(new List<double> { 20, 13, 4, 3 }),
+                MembershipFunction = new TrapezoidFunction(new List<double> { 3, 4, 13, 20 }),
                 FieldExtractor = (e) => e.Place
             }
         };
@@ -316,7 +316,7 @@ namespace Zad2.FuzzyLogic
             Extractor = (e) => new TrapezoidFunction(new List<double> { 4, 3, 1, 1 }).GetMembership(e.Place),
             FuzzySet = new FuzzySet
             {
-                MembershipFunction = new TrapezoidFunction(new List<double> { 4, 3, 1, 1 }),
+                MembershipFunction = new TrapezoidFunction(new List<double> { 1, 1, 3, 4 }),
                 FieldExtractor = (e) => e.Place
             }
         };

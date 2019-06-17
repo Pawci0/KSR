@@ -70,6 +70,10 @@ namespace Zad2.FuzzyLogic
             foreach(Entry e in entries)
             {
                 up += Math.Min(qualifier.GetMemebership(e), summarizer.GetMemebership(e));
+                if(e.Place == 10)
+                {
+
+                }
                 down += qualifier.Extractor(e);
             }
             if(quantificator.Absolute)
@@ -86,7 +90,7 @@ namespace Zad2.FuzzyLogic
             {
                 ret *= set.DegreeOfFuzziness(entries);
             }
-            ret = Math.Pow(ret, 1 / fuzzySets.Count);
+            ret = Math.Pow(ret, 1.0 / fuzzySets.Count);
             return 1 - ret;
         }
 
