@@ -118,11 +118,12 @@ namespace Zad2.FuzzyLogic
         //T6
         public static double DegreeOfQuantifierImprecision(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<Entry> entries)
         {
-            var ret = quantificator.MembershipFunction.Cardinality();
+            var ret = (quantificator.MembershipFunction.Parameters.Last()
+                       - quantificator.MembershipFunction.Parameters.First());
 
             if (quantificator.Absolute)
             {
-                ret /= (double) entries.Count;
+                ret /= (double)entries.Count;
             }
             return 1 - ret;
         }
